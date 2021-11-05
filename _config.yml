@@ -1,2 +1,5 @@
-title: "ここにタイトル"
-author: "柴田　侃汰 (SHIBATA Kanta)"
+title: "雑記 備忘録"
+author: "柴田 侃汰 SHIBATA Kanta"
+
+execute:
+  execute_notebooks: off
