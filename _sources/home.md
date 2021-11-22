@@ -1,5 +1,5 @@
 # ホーム
-ここでは雑記や備忘録を書いていきます。このWebサイトは[Jupyter Book](https://jupyterbook.org/)によって作成され、[GitHub Pages](https://docs.github.com/ja/pages)を使用して公開されています。
+ここでは備忘録や雑記を書いていきます。このWebサイトは[Jupyter Book](https://jupyterbook.org/)によって作成され、[GitHub Pages](https://docs.github.com/ja/pages)を使用して公開されています。
 
 ## なぜ公開するのか
 備忘録を公開するのは自分のためでもあり、他の人のためでもあります。
