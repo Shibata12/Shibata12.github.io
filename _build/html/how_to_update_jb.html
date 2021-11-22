@@ -176,12 +176,27 @@
 <h1>Jupyter Book の更新方法<a class="headerlink" href="#jupyter-book" title="Permalink to this headline">¶</a></h1>
 <p><strong>投稿日：2021年11月22日　最終更新日：2021年11月22日</strong></p>
 <p>2021年11月5日にこのサイトを公開して2週間ほど経過しました。驚くことにサイトの更新方法を忘れていました。今回はJupyter Bookの更新方法を自分用にまとめておきます。</p>
-<ol class="simple">
-<li><p>ローカル環境でJupyter Bookを更新する</p></li>
-<li><p>gitでadd, commit, push</p></li>
-</ol>
-<p><strong>ローカル環境でJupyter Bookを更新する</strong><br></p>
-<p><strong>gitでadd, commit, push</strong><br></p>
+<p><strong>ローカル環境でJupyter Bookを更新する</strong><br>
+gitでクローンしたフォルダに移動してJupyter Bookを更新する。以下のコマンドで実行できる。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> Shibata12.github.io
+jupyter-book build --all .
+</pre></div>
+</div>
+<p><strong>gitでadd, commit, push</strong><br>
+Jupyter Bookの更新をしたら、以下のコマンドを実行した後にpushする。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout master
+ghp-import -n -p -f _build/html
+git add .
+git commit -m <span class="s2">&quot;comment&quot;</span>
+git push
+</pre></div>
+</div>
+<p>これでサイトが更新される。</p>
+<p><strong>所感</strong><br>
+よく分かんないけど更新できた。</p>
+<p><strong>参考</strong><br>
+<a class="reference external" href="https://jupyterbook.org/start/publish.html">https://jupyterbook.org/start/publish.html</a>
+<a class="reference external" href="https://qiita.com/magolors/items/620860558661b527f267">https://qiita.com/magolors/items/620860558661b527f267</a></p>
 </div>
 
     <script type="text/x-thebe-config">
