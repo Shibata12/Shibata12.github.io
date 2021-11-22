@@ -1,2 +1,6 @@
 format: jb-book
 root: home
+parts:
+  - caption: 備忘録
+    chapters:
+    - file: how_to_update_jb
