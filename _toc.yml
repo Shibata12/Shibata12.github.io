@@ -4,3 +4,6 @@ parts:
   - caption: 備忘録
     chapters:
     - file: how_to_update_jb
+  - caption: 雑記
+    chapters:
+    - file: movies_watched
