@@ -3,8 +3,11 @@ root: home
 parts:
   - caption: 備忘録
     chapters:
-    - file: how_to_update_jb
-    - file: create_venv
+    - file: 備忘録/how_to_update_jb
+    - file: 備忘録/create_venv
+    #- file: 備忘録/book_Pythonによる機械学習入門Ohmsha/book_Python_ml_Ohmsha
+      #sections:
+      #- file: 備忘録/book_Pythonによる機械学習入門Ohmsha/chapter3
   - caption: 雑記
     chapters:
-    - file: movies_watched
+    - file: 雑記/movies_watched
