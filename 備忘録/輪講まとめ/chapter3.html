@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>第3章 &#8212; 備忘録 雑記</title>
+    <title>第3章 分類問題 &#8212; 備忘録 雑記</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -52,7 +52,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="今まで視聴してきたアニメ、映画" href="../../%E9%9B%91%E8%A8%98/movies_watched.html" />
-    <link rel="prev" title="書籍：Pythonによる機械学習入門" href="book_Python_ml_Ohmsha.html" />
+    <link rel="prev" title="輪講まとめ" href="book_Python_ml_Ohmsha.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -106,7 +106,7 @@
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="book_Python_ml_Ohmsha.html">
-   書籍：Pythonによる機械学習入門
+   輪講まとめ
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -116,7 +116,7 @@
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     第3章
+     第3章　分類問題
     </a>
    </li>
   </ul>
@@ -174,7 +174,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/備忘録/book_Pythonによる機械学習入門Ohmsha/chapter3.md"><button type="button"
+        <a class="dropdown-buttons" href="../../_sources/備忘録/輪講まとめ/chapter3.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -199,6 +199,51 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   データセットの読み込み
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   分類器による学習
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     決定木
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     ランダムフォレスト
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#adaboost">
+     AdaBoost
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     サポートベクターマシーン
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   評価
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -208,8 +253,31 @@
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="id1">
-<h1>第3章<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<p><strong>投稿日：2021年12月17日<br>最終更新日：2021年12月17日</strong></p>
+<h1>第3章　分類問題<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p><strong>投稿日：2021年12月18日<br>最終更新日：2021年12月18日</strong></p>
+<p>この章では教師あり学習の分類問題を扱う。scikit-learnのデータセットを使用して分類器を学習し評価する一通りの流れを確認する。分類器には決定木、ランダムフォレスト、AdaBoost、サポートベクターマシーンを使用する。なお、それぞれの分類器の理論的な説明は行わない。</p>
+<p>例えば、画像を見て犬か猫を判定することは分類問題になる。教師あり学習であるため、学習するときにラベルを使用する。この場合のラベルは「犬」か「猫」である。</p>
+<div class="section" id="id2">
+<h2>データセットの読み込み<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="id3">
+<h2>分類器による学習<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h3>決定木<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id5">
+<h3>ランダムフォレスト<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="adaboost">
+<h3>AdaBoost<a class="headerlink" href="#adaboost" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id6">
+<h3>サポートベクターマシーン<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="id7">
+<h2>評価<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -225,7 +293,7 @@
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./備忘録\book_Pythonによる機械学習入門Ohmsha"
+            path: "./備忘録\輪講まとめ"
         },
         predefinedOutput: true
     }
@@ -246,7 +314,7 @@
             <i class="prevnext-label fas fa-angle-left"></i>
             <div class="prevnext-info">
                 <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">書籍：Pythonによる機械学習入門</p>
+                <p class="prevnext-title">輪講まとめ</p>
             </div>
         </a>
     </div>
