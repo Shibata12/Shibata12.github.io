@@ -1,0 +1,61 @@
+from sklearn.datasets import load_digits
+digits_data = load_digits()
+
+digits_data.data.shape
+
+import matplotlib.pyplot as plt
+plt.matshow(digits_data.images[0], cmap="gray")
+plt.show()
+
+from sklearn.model_selection import train_test_split
+
+flag_3_8 = (digits_data.target == 3) + (digits_data.target == 8)
+X_train, X_test, y_train, y_test = train_test_split(digits_data.data[flag_3_8],
+                                                    digits_data.target[flag_3_8],
+                                                    test_size=0.4,
+                                                    random_state=1)
+y_train
+
+X_train.shape, X_test.shape
+
+from sklearn.tree import DecisionTreeClassifier
+
+tree = DecisionTreeClassifier(max_depth=3, random_state=1)
+tree.fit(X_train, y_train)
+print(f"　訓練データ正解率{tree.score(X_train, y_train)}")
+print(f"テストデータ正解率{tree.score(X_test, y_test)}")
+
+from sklearn.ensemble import RandomForestClassifier
+
+random_forest = RandomForestClassifier(n_estimators=20,
+                                       max_depth=3,
+                                       random_state=1)
+random_forest.fit(X_train, y_train)
+print(f"　訓練データ正解率{random_forest.score(X_train, y_train)}")
+print(f"テストデータ正解率{random_forest.score(X_test, y_test)}")
+
+from sklearn.ensemble import AdaBoostClassifier
+
+estimator = DecisionTreeClassifier(max_depth=3, random_state=1)
+adaboost = AdaBoostClassifier(base_estimator=estimator,
+                              n_estimators=20,
+                              random_state=1)
+adaboost.fit(X_train, y_train)
+print(f"　訓練データ正解率{adaboost.score(X_train, y_train)}")
+print(f"テストデータ正解率{adaboost.score(X_test, y_test)}")
+
+from sklearn.svm import SVC
+
+support_vector_machine = SVC(C=1.0, gamma=0.001, random_state=1)
+support_vector_machine.fit(X_train, y_train)
+print(f"　訓練データ正解率{support_vector_machine.score(X_train, y_train)}")
+print(f"テストデータ正解率{support_vector_machine.score(X_test, y_test)}")
+
+from sklearn.metrics import confusion_matrix
+
+y_predict = tree.predict(X_test)
+print(confusion_matrix(y_test, y_predict))
+
+from sklearn.metrics import classification_report
+
+print(classification_report(y_test, y_predict, digits=6))

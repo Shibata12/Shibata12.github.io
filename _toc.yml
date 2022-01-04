@@ -5,9 +5,9 @@ parts:
     chapters:
     - file: 備忘録/how_to_update_jb
     - file: 備忘録/create_venv
-    #- file: 備忘録/book_Pythonによる機械学習入門Ohmsha/book_Python_ml_Ohmsha
-      #sections:
-      #- file: 備忘録/book_Pythonによる機械学習入門Ohmsha/chapter3
+    - file: 備忘録/書籍_Pythonによる機械学習入門/book_Python_ml_Ohmsha
+      sections:
+      - file: 備忘録/書籍_Pythonによる機械学習入門/chapter3
   - caption: 雑記
     chapters:
     - file: 雑記/movies_watched
