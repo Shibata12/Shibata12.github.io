@@ -5,6 +5,9 @@ parts:
     chapters:
     - file: 備忘録/how_to_update_jb
     - file: 備忘録/create_venv
+    - file: 備忘録/Book_Introducing_Python/Book_Introducing_Python
+      sections:
+      - file: 備忘録/Book_Introducing_Python/9章　関数/p181
 #    - file: 備忘録/書籍_Pythonによる機械学習入門/book_Python_ml_Ohmsha
 #      sections:
 #      - file: 備忘録/書籍_Pythonによる機械学習入門/chapter3
