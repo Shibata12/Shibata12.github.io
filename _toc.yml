@@ -9,6 +9,7 @@ parts:
       sections:
       - file: 備忘録/Book_Introducing_Python/9章　関数/p181
       - file: 備忘録/Book_Introducing_Python/9章　関数/p183-187
+      - file: 備忘録/Book_Introducing_Python/9章　関数/p205
   - caption: 雑記
     chapters:
     - file: 雑記/movies_watched
