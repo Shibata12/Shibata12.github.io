@@ -13,3 +13,4 @@ parts:
   - caption: 雑記
     chapters:
     - file: 雑記/movies_watched
+    - file: 雑記/report2021
