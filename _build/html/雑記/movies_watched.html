@@ -41,13 +41,12 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -197,7 +196,7 @@
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -215,7 +214,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -240,7 +239,35 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>今まで視聴してきたアニメ、映画</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   アニメ
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   映画
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="id1">
@@ -266,7 +293,7 @@
 <td class="text-align:center"><p>PSYCHO-PASS　サイコパス（2012年）<br>PSYCHO-PASS サイコパス 2（2014年）<br>残響のテロル（2014年）<br>STEINS;GATE（2011年）<br>シュタインズ・ゲート ゼロ（2018年）<br>SHIROBAKO（2014年）<br>進撃の巨人 Season 1（2013年）<br>進撃の巨人 Season 2（2017年）<br>進撃の巨人 Season 3（2018年）<br>進撃の巨人 The Final Season（2020年　視聴中）<br>慎重勇者　この勇者が俺TUEEEくせに慎重すぎる（2019年）<br>ジパング（2004年）<br>シャドーハウス（2021年）<br>呪術廻戦（2020年）<br>ジョジョの奇妙な冒険（2012年）<br>ジョジョの奇妙な冒険 スターダストクルセイダース（2014年）<br>ジョジョの奇妙な冒険 スターダストクルセイダース エジプト編（2015年）<br>ジョジョの奇妙な冒険 黄金の風（2018年）<br>ジョジョの奇妙な冒険 ストーンオーシャン（2021年）<br>新世紀エヴァンゲリオン（1995年）<br>人類は衰退しました（2012年）<br>スペース☆ダンディ（2014年）<br>世界最高の暗殺者、異世界貴族に転生する（2021年）<br>7SEEDS（2020年）<br>その着せ替え人形は恋をする（2022年）<br>宇宙よりも遠い場所（2017年）<br>ソードアート・オンライン（2012年）<br>続・終物語（2018年）<br>ゾンビランドサガ（2018年）</p></td>
 </tr>
 <tr class="row-odd"><td class="text-align:center"><p>た行</p></td>
-<td class="text-align:center"><p>盾の勇者の成り上がり（2019年）<br>神之塔 -Tower of God-（2020年）<br>ダンベル何キロ持てる？（2019年）<br>TERRAFORMARS（2014年）<br>テラフォーマーズ　リベンジ（2016年）<br>デカダンス（2020年）<br>DEATH NOTE -デスノート-（2006年）<br>亜人ちゃんは語りたい（2017年）<br>デュラララ!!（2010年）<br>デュラララ!!×２ 承（2015年）<br>デュラララ!!×２ 転（2015年）<br>デュラララ!!×２ 結（2016年）<br>電脳コイル（2007年）<br>東京リベンジャーズ（2021年）<br>転生したらスライムだった件（2018年）<br>転生したらスライムだった件　第２期（2021年）<br>闘牌伝説アカギ（2005年）<br>Ｄｒ．ＳＴＯＮＥ　第１期（2019年）<br>Ｄｒ．ＳＴＯＮＥ　第２期（2021年）<br>DRIFTERS（2016年）<br>ドロヘドロ（2020年）<br>どろろ（2019年　視聴中）</p></td>
+<td class="text-align:center"><p>盾の勇者の成り上がり（2019年）<br>神之塔 -Tower of God-（2020年）<br>ダンベル何キロ持てる？（2019年）<br>TERRAFORMARS（2014年）<br>テラフォーマーズ　リベンジ（2016年）<br>デカダンス（2020年）<br>DEATH NOTE -デスノート-（2006年）<br>亜人ちゃんは語りたい（2017年）<br>デュラララ!!（2010年）<br>デュラララ!!×２ 承（2015年）<br>デュラララ!!×２ 転（2015年）<br>デュラララ!!×２ 結（2016年）<br>電脳コイル（2007年）<br>東京リベンジャーズ（2021年）<br>転生したらスライムだった件（2018年）<br>転生したらスライムだった件　第２期（2021年）<br>闘牌伝説アカギ（2005年）<br>Ｄｒ．ＳＴＯＮＥ　第１期（2019年）<br>Ｄｒ．ＳＴＯＮＥ　第２期（2021年）<br>DRIFTERS（2016年）<br>ドロヘドロ（2020年）<br>どろろ（2019年）</p></td>
 </tr>
 <tr class="row-even"><td class="text-align:center"><p>な行</p></td>
 <td class="text-align:center"><p>夏目友人帳（2008年）<br>続 夏目友人帳（2009年）<br>夏目友人帳 参（2011年）<br>夏目友人帳 肆（2012年）<br>夏目友人帳 OVA（2014年）<br>夏目友人帳 伍（2016年）<br>夏目友人帳 陸（2017年）<br>夏目友人帳 石起こしと怪しき来訪者（2021年）<br>NARUTO‐ナルト‐波の国編（2002年）<br>NARUTO‐ナルト‐中忍試験編（2002年）<br>NARUTO‐ナルト‐木ノ葉崩し編（2002年）<br>NARUTO‐ナルト‐綱手捜索編（2002年）<br>NARUTO‐ナルト‐サスケ奪還編（2002年）<br>NARUTO-ナルト- 疾風伝　風影奪還編（2007年）<br>NARUTO-ナルト- 疾風伝　サスケ再会編（2007年）<br>NARUTO-ナルト- 疾風伝　守護忍十二土編（2007年）<br>NARUTO-ナルト- 疾風伝　飛段・角都編（2007年）<br>NARUTO-ナルト- 疾風伝　自来也VSペイン・サスケVSイタチ編（2007年）<br>NARUTO-ナルト- 疾風伝　ペイン来襲編（2007年）<br>NARUTO-ナルト- 疾風伝　五影編（2007年）<br>NARUTO-ナルト- 疾風伝　忍界大戦編（1）（2007年）<br>NARUTO-ナルト- 疾風伝　忍界大戦編（2）（2007年　視聴中）<br>偽物語（2012年）<br>日常（2011年）<br>日本沈没（2020年）<br>NEW GAME!（2016年）<br>NEW GAME!!（2017年）<br>猫物語(黒)（2012年）<br>NO GUNS LIFE ノー・ガンズ・ライフ（2019年）</p></td>
@@ -302,7 +329,7 @@
 <td class="text-align:center"><p>AKIRA（1988年）<br>あの日見た花の名前を僕達はまだ知らない。（2013年）<br>アメリカン・スナイパー（2014年）<br>イノセンス（2004年）<br>インセプション（2010年）<br>インターステラー（2014年）<br>ヱヴァンゲリヲン新劇場版　序（2007年）<br>ヱヴァンゲリヲン新劇場版　破（2009年）<br>ヱヴァンゲリヲン新劇場版　Q（2012年）<br>おおかみこどもの雨と雪（2012年）</p></td>
 </tr>
 <tr class="row-odd"><td class="text-align:center"><p>か行</p></td>
-<td class="text-align:center"><p>「鬼滅の刃」無限列車編（2020年）<br>虐殺器官（2017年）<br>雲のむこう、約束の場所（2004年）<br>GHOST IN THE SHELL/攻殻機動隊（1995年）<br>攻殻機動隊 STAND ALONE COMPLEX Solid State Society（2006年）<br>攻殻機動隊 新劇場版（2015年）<br>心が叫びたがってるんだ。（2015年）<br>言の葉の庭（2013年）<br>この素晴らしい世界に祝福を！紅伝説（2019年）<br>この世界のさらにいくつもの片隅に（2019年）<br>ゴブリンスレイヤー -GOBLIN’S CROWN-</p></td>
+<td class="text-align:center"><p>「鬼滅の刃」無限列車編（2020年）<br>虐殺器官（2017年）<br>雲のむこう、約束の場所（2004年）<br>GHOST IN THE SHELL/攻殻機動隊（1995年）<br>攻殻機動隊 STAND ALONE COMPLEX Solid State Society（2006年）<br>攻殻機動隊 新劇場版（2015年）<br>心が叫びたがってるんだ。（2015年）<br>言の葉の庭（2013年）<br>この素晴らしい世界に祝福を！紅伝説（2019年）<br>この世界のさらにいくつもの片隅に（2019年）<br>ゴブリンスレイヤー -GOBLIN’S CROWN-（2020年）</p></td>
 </tr>
 <tr class="row-even"><td class="text-align:center"><p>さ行</p></td>
 <td class="text-align:center"><p>劇場版『SHIROBAKO』（2020年）<br>新世紀エヴァンゲリオン劇場版　Air/まごころを、君に（1997年）<br>スティーブ・ジョブズ（2013年）</p></td>
@@ -355,8 +382,8 @@
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="../%E5%82%99%E5%BF%98%E9%8C%B2/Book_Introducing_Python/9%E7%AB%A0%E3%80%80%E9%96%A2%E6%95%B0/p205.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -373,19 +400,17 @@
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By 柴田 侃汰<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By 柴田 侃汰<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
