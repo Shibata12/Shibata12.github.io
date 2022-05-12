@@ -3,14 +3,14 @@ root: home
 parts:
   - caption: 備忘録
     chapters:
-    - file: 備忘録/how_to_update_jb
-    - file: 備忘録/create_venv
-    - file: 備忘録/Book_Introducing_Python/Book_Introducing_Python
+    - file: bibouroku/how_to_update_jb
+    - file: bibouroku/create_venv
+    - file: bibouroku/Book_Introducing_Python/Book_Introducing_Python
       sections:
-      - file: 備忘録/Book_Introducing_Python/9章　関数/p181
-      - file: 備忘録/Book_Introducing_Python/9章　関数/p183-187
-      - file: 備忘録/Book_Introducing_Python/9章　関数/p205
+      - file: bibouroku/Book_Introducing_Python/9章　関数/p181
+      - file: bibouroku/Book_Introducing_Python/9章　関数/p183-187
+      - file: bibouroku/Book_Introducing_Python/9章　関数/p205
   - caption: 雑記
     chapters:
-    - file: 雑記/movies_watched
-    - file: 雑記/report2021
+    - file: zakki/movies_watched
+    - file: zakki/report2021

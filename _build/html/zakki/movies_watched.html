@@ -1,0 +1,423 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>今まで視聴してきたアニメ、映画 &#8212; 備忘録 雑記</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2021年度（令和3年度）の睡眠時間と勉強時間" href="report2021.html" />
+    <link rel="prev" title="再帰を利用したリストのリストのリストの平坦化" href="../bibouroku/Book_Introducing_Python/9%E7%AB%A0%E3%80%80%E9%96%A2%E6%95%B0/p205.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">備忘録 雑記</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../home.html">
+   ホーム
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  備忘録
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../bibouroku/how_to_update_jb.html">
+   Jupyter Book の更新方法
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../bibouroku/create_venv.html">
+   Anacondaで仮想環境を作成
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../bibouroku/Book_Introducing_Python/Book_Introducing_Python.html">
+   書籍：入門 Python 3 第2版
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bibouroku/Book_Introducing_Python/9%E7%AB%A0%E3%80%80%E9%96%A2%E6%95%B0/p181.html">
+     デフォルト引数にはイミュータブルなデータ型を使用する
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bibouroku/Book_Introducing_Python/9%E7%AB%A0%E3%80%80%E9%96%A2%E6%95%B0/p183-187.html">
+     関数の引数で見かける「*args」,「**kwargs」,「*」
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bibouroku/Book_Introducing_Python/9%E7%AB%A0%E3%80%80%E9%96%A2%E6%95%B0/p205.html">
+     再帰を利用したリストのリストのリストの平坦化
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  雑記
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   今まで視聴してきたアニメ、映画
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="report2021.html">
+   2021年度（令和3年度）の睡眠時間と勉強時間
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/zakki/movies_watched.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   アニメ
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   映画
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>今まで視聴してきたアニメ、映画</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   アニメ
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   映画
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
+<h1>今まで視聴してきたアニメ、映画<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p><strong>投稿日：2021年11月23日<br>最終更新日：2022年5月10日</strong></p>
+<p>今まで見てきた作品を列挙します。列挙するために<a class="reference external" href="https://anime.dmkt-sp.jp/animestore/c_all_pc?initialCollectionKey=1">dアニメストア</a>のサイトを参照しました。映画については漏れがたくさんあります。</p>
+<div class="section" id="id2">
+<h2>アニメ<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>五十音順</p></th>
+<th class="text-align:center head"><p>作品名</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>あ行</p></td>
+<td class="text-align:center"><p>アクダマドライブ（2020年）<br>亜人（2016年）(br)異世界カルテット　第一期（2019年）<br>イナズマイレブン　フットボールフロンティア編（2008年）<br>頭文字D（1998年）<br>妖狐×僕SS（2012年）<br>いぬやしき（2017年）<br>陰謀論のオシゴト（2021年）<br>ULTRAMAN　ウルトラマン（2019年）<br>ULTRAMAN　ウルトラマン　シーズン2（2022年）<br>ヴィンランド・サガ（2019年）<br>映像研には手を出すな！（2020年）<br>86ーエイティシックスー（2021年）<br>炎炎ノ消防隊（2019年）<br>炎炎ノ消防隊　弐ノ章（2020年）<br>おそ松さん（2015年）</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>か行</p></td>
+<td class="text-align:center"><p>カウボーイビバップ（1998年）<br>かぐや様は告らせたい～天才たちの恋愛頭脳戦～（2019年）<br>かぐや様は告らせたい？～天才たちの恋愛頭脳戦～（2020年）<br>賭󠄀ケグルイ（2017年）<br>賭ケグルイ××（2019年）<br>神様になった日（2020年）<br>神之塔 -Tower of God-（2020年）<br>岸辺露伴は動かない（2021年）<br>寄生獣　セイの格率（2014年）<br>「鬼滅の刃」竈門炭治郎 立志編（2019年）<br>「鬼滅の刃」遊郭編（2021年）<br>逆境無頼カイジ（2007年）<br>逆境無頼カイジ 破戒録篇（2011年）<br>グレイプニル（2020年）<br>GREAT PRETENDER　グレートプリテンダー（2020年）<br>けものフレンズ（2017年）<br>ケンガンアシュラ（2019年）<br>賢者の孫（2019年）<br>攻殻機動隊 STAND ALONE COMPLEX（2002年）<br>攻殻機動隊 S.A.C. 2nd GIG（2004年）<br>攻殻機動隊 ARISE（2013年）<br>攻殻機動隊ARISE PYROPHORIC CULT（2015年）<br>攻殻機動隊 SAC_2045（2020年）<br>この素晴らしい世界に祝福を!（2016年）<br>この素晴らしい世界に祝福を!2（2017年）<br>小林さんちのメイドラゴン（2017年）<br>小林さんちのメイドラゴンS（2021年）<br>コードギアス 反逆のルルーシュ（2006年）<br>コードギアス 反逆のルルーシュR2（2008年）<br>ゴールデンカムイ（2018年）<br>ゴールデンカムイ（第二期）（2018年）<br>ゴールデンカムイ（第三期）（2020年）</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>さ行</p></td>
+<td class="text-align:center"><p>PSYCHO-PASS　サイコパス（2012年）<br>PSYCHO-PASS サイコパス 2（2014年）<br>残響のテロル（2014年）<br>失格紋の最強賢者（2022年）<br>STEINS;GATE（2011年）<br>シュタインズ・ゲート ゼロ（2018年）<br>SHIROBAKO（2014年）<br>進撃の巨人 Season 1（2013年）<br>進撃の巨人 Season 2（2017年）<br>進撃の巨人 Season 3 Part.1（2018年）<br>進撃の巨人 Season 3 Part.2（2019年）<br>進撃の巨人 The Final Season Part.1（2020年）<br>進撃の巨人 The Final Season Part.2（2022年）<br>慎重勇者　この勇者が俺TUEEEくせに慎重すぎる（2019年）<br>ジパング（2004年）<br>シャドーハウス（2021年）<br>呪術廻戦（2020年）<br>ジョジョの奇妙な冒険（2012年）<br>ジョジョの奇妙な冒険 スターダストクルセイダース（2014年）<br>ジョジョの奇妙な冒険 スターダストクルセイダース エジプト編（2015年）<br>ジョジョの奇妙な冒険 黄金の風（2018年）<br>ジョジョの奇妙な冒険 ストーンオーシャン（2021年）<br>新世紀エヴァンゲリオン（1995年）<br>人類は衰退しました（2012年）<br>スペース☆ダンディ（2014年）<br>世界最高の暗殺者、異世界貴族に転生する（2021年）<br>7SEEDS（2020年）<br>その着せ替え人形は恋をする（2022年）<br>宇宙よりも遠い場所（2017年）<br>ソードアート・オンライン（2012年）<br>続・終物語（2018年）<br>ゾンビランドサガ（2018年）</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>た行</p></td>
+<td class="text-align:center"><p>盾の勇者の成り上がり（2019年）<br>ダンジョンに出会いを求めるのは間違っているだろうか　第一期（2015年）<br>ダンジョンに出会いを求めるのは間違っているだろうか　第二期（2019年）<br><br>ダンジョンに出会いを求めるのは間違っているだろうか　第三期（2020年）ダンベル何キロ持てる？（2019年）<br>TERRAFORMARS（2014年）<br>テラフォーマーズ　リベンジ（2016年）<br>デカダンス（2020年）<br>DEATH NOTE -デスノート-（2006年）<br>亜人ちゃんは語りたい（2017年）<br>テルマエ・ロマエ ノヴァエ（2022年）<br>デュラララ!!（2010年）<br>デュラララ!!×２ 承（2015年）<br>デュラララ!!×２ 転（2015年）<br>デュラララ!!×２ 結（2016年）<br>電脳コイル（2007年）<br>東京リベンジャーズ（2021年）<br>天才王子の赤字国家再生術〜そうだ、売国しよう〜（2022年）<br>転生したらスライムだった件（2018年）<br>転生したらスライムだった件　第２期（2021年）<br>闘牌伝説アカギ（2005年）<br>Ｄｒ．ＳＴＯＮＥ　第１期（2019年）<br>Ｄｒ．ＳＴＯＮＥ　第２期（2021年）<br>DRIFTERS（2016年）<br>ドロヘドロ（2020年）<br>どろろ（2019年）</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>な行</p></td>
+<td class="text-align:center"><p>夏目友人帳（2008年）<br>続 夏目友人帳（2009年）<br>夏目友人帳 参（2011年）<br>夏目友人帳 肆（2012年）<br>夏目友人帳 OVA（2014年）<br>夏目友人帳 伍（2016年）<br>夏目友人帳 陸（2017年）<br>夏目友人帳 石起こしと怪しき来訪者（2021年）<br>NARUTO‐ナルト‐波の国編（2002年）<br>NARUTO‐ナルト‐中忍試験編（2002年）<br>NARUTO‐ナルト‐木ノ葉崩し編（2002年）<br>NARUTO‐ナルト‐綱手捜索編（2002年）<br>NARUTO‐ナルト‐サスケ奪還編（2002年）<br>NARUTO-ナルト- 疾風伝　風影奪還編（2007年）<br>NARUTO-ナルト- 疾風伝　サスケ再会編（2007年）<br>NARUTO-ナルト- 疾風伝　守護忍十二土編（2007年）<br>NARUTO-ナルト- 疾風伝　飛段・角都編（2007年）<br>NARUTO-ナルト- 疾風伝　自来也VSペイン・サスケVSイタチ編（2007年）<br>NARUTO-ナルト- 疾風伝　ペイン来襲編（2007年）<br>NARUTO-ナルト- 疾風伝　五影編（2007年）<br>NARUTO-ナルト- 疾風伝　忍界大戦編（1）（2007年）<br>NARUTO-ナルト- 疾風伝　忍界大戦編（2）（2007年　視聴中）<br>偽物語（2012年）<br>日常（2011年）<br>日本沈没（2020年）<br>NEW GAME!（2016年）<br>NEW GAME!!（2017年）<br>猫物語(黒)（2012年）<br>NO GUNS LIFE ノー・ガンズ・ライフ（2019年）</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>は行</p></td>
+<td class="text-align:center"><p>BIOHAZARD INFINITE DARKNESS（2021年）<br>鋼の錬金術師（2003年）<br>鋼の錬金術師 FULLMETAL ALCHEMIST（2011年）<br>バキ（2018年）<br>バキ　大擂台賽編（2020年）<br>化物語（2009年）<br>BANANA FISH（2018年）<br>範馬刃牙（2021年）<br>BNA（2020年）<br>東のエデン（2009年）<br>ひぐらしのなく頃に（2006年）<br>ひぐらしのなく頃に解（2007年）<br>ひぐらしのなく頃に礼（2009年）<br>ひぐらしのなく頃に煌（2011年）<br>ひぐらしのなく頃に業（2020年）<br>ひぐらしのなく頃に卒（2021年）<br>B: The Beginning（2018年）<br>ヒナまつり（2018年）<br>干物妹！うまるちゃん（2015年）<br>干物妹！うまるちゃんR（2017年）<br>Vivy -Fluorite Eye’s Song-（2021年）<br>不滅のあなたへ（2021年）<br>ピンポン（2014年）<br>ブラック・ジャック＜OVA＞（1993年）<br>BLACK LAGOON　ブラックラグーン（2010年）<br>プラネテス（2003年）<br>HELLSING（2006年）<br>僕だけがいない街（2016年）<br>ぼくらの（2007年）<br>ポプテピピック（2018年）<br>本好きの下剋上 司書になるためには手段を選んでいられません（2019年）</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>ま行</p></td>
+<td class="text-align:center"><p>魔法少女まどか☆マギカ（2011年）<br>魔女の旅々（2020年）<br>まちカドまぞく（2019年）<br>無職転生 ～異世界行ったら本気だす～（2021年）<br>メイドインアビス（2017年）<br>妄想代理人（2004年）<br>物語シリーズ　セカンドシーズン（2014年）<br>モブサイコ100（2016年）<br>モブサイコ100 Ⅱ（2019年）<br>MONSTER（2004年）</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>や行</p></td>
+<td class="text-align:center"><p>約束のネバーランド　第一期（2019年）<br>約束のネバーランド　第二期（2021年）<br>幼女戦記（2017年）<br>幼女戦記　閑話『砂漠のパスタ大作戦』（2021年）<br>ヨルムンガンド（2012年）<br>ヨルムンガンド PERFECT ORDER（2012年）</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>ら行</p></td>
+<td class="text-align:center"><p>Re:ゼロから始める異世界生活（2016年）<br>Re:ゼロから始める異世界生活 2nd season（2020年）</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>わ行</p></td>
+<td class="text-align:center"><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id3">
+<h2>映画<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>五十音順</p></th>
+<th class="text-align:center head"><p>作品名</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>あ行</p></td>
+<td class="text-align:center"><p>AKIRA（1988年）<br>あの日見た花の名前を僕達はまだ知らない。（2013年）<br>アメリカン・スナイパー（2014年）<br>イノセンス（2004年）<br>インセプション（2010年）<br>インターステラー（2014年）<br>ヱヴァンゲリヲン新劇場版　序（2007年）<br>ヱヴァンゲリヲン新劇場版　破（2009年）<br>ヱヴァンゲリヲン新劇場版　Q（2012年）<br>おおかみこどもの雨と雪（2012年）</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>か行</p></td>
+<td class="text-align:center"><p>「鬼滅の刃」無限列車編（2020年）<br>虐殺器官（2017年）<br>雲のむこう、約束の場所（2004年）<br>GHOST IN THE SHELL/攻殻機動隊（1995年）<br>攻殻機動隊 STAND ALONE COMPLEX Solid State Society（2006年）<br>攻殻機動隊 新劇場版（2015年）<br>心が叫びたがってるんだ。（2015年）<br>言の葉の庭（2013年）<br>この素晴らしい世界に祝福を！紅伝説（2019年）<br>この世界のさらにいくつもの片隅に（2019年）<br>ゴブリンスレイヤー -GOBLIN’S CROWN-（2020年）</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>さ行</p></td>
+<td class="text-align:center"><p>劇場版『SHIROBAKO』（2020年）<br>新世紀エヴァンゲリオン劇場版　Air/まごころを、君に（1997年）<br>スティーブ・ジョブズ（2013年）</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>た行</p></td>
+<td class="text-align:center"><p>テネット（2020年）<br>デンジャー・ゾーン（2021年）</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>な行</p></td>
+<td class="text-align:center"><p>2001年宇宙の旅（1968年）</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>は行</p></td>
+<td class="text-align:center"><p>東のエデン 劇場版I The King of Eden（2009年）<br>東のエデン 劇場版II Paradise Lost（2010年）<br>フューリー（2014年）<br>秒速5センチメートル（2007年）</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>ま行</p></td>
+<td class="text-align:center"><p>マトリックス（1999年）<br>マトリックス　リローデッド（2003年）<br>マトリックス　レボリューションズ（2003年）<br>MIDSOMMAR　ミッドサマー（2019年）<br>ミッドナイト・スカイ（2020年）<br>劇場版「メイドインアビス 深き魂の黎明」（2020年）</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>や行</p></td>
+<td class="text-align:center"><p>劇場版 幼女戦記（2019年）</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>ら行</p></td>
+<td class="text-align:center"><p>RED（2010年）<br>REDリターンズ（2013年）<br>Re:ゼロから始める異世界生活 Memory Snow（2018年）<br>Re:ゼロから始める異世界生活 氷結の絆（2019年）</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>わ行</p></td>
+<td class="text-align:center"><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./zakki"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="../bibouroku/Book_Introducing_Python/9%E7%AB%A0%E3%80%80%E9%96%A2%E6%95%B0/p205.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">再帰を利用したリストのリストのリストの平坦化</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="report2021.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">2021年度（令和3年度）の睡眠時間と勉強時間</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By 柴田 侃汰<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
