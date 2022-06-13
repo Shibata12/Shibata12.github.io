@@ -1,0 +1,1571 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>不均衡データセットのベースラインモデル評価 &#8212; 備忘録 雑記</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet">
+  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="書籍：入門 Python 3 第2版" href="../Book_Introducing_Python/Book_Introducing_Python.html" />
+    <link rel="prev" title="Imbalanced-learn" href="Imbalanced-learn-intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">備忘録 雑記</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../home.html">
+   ホーム
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  備忘録
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../how_to_update_jb.html">
+   Jupyter Book の更新方法
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../create_venv.html">
+   Anacondaで仮想環境を作成
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="Imbalanced-learn-intro.html">
+   Imbalanced-learn
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     不均衡データセットのベースラインモデル評価
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Book_Introducing_Python/Book_Introducing_Python.html">
+   書籍：入門 Python 3 第2版
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Book_Introducing_Python/9%E7%AB%A0%E3%80%80%E9%96%A2%E6%95%B0/p181.html">
+     デフォルト引数にはイミュータブルなデータ型を使用する
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Book_Introducing_Python/9%E7%AB%A0%E3%80%80%E9%96%A2%E6%95%B0/p183-187.html">
+     関数の引数で見かける「*args」,「**kwargs」,「*」
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Book_Introducing_Python/9%E7%AB%A0%E3%80%80%E9%96%A2%E6%95%B0/p205.html">
+     再帰を利用したリストのリストのリストの平坦化
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  雑記
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../zakki/movies_watched.html">
+   今まで視聴してきたアニメ、映画
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../zakki/report2021.html">
+   2021年度（令和3年度）の睡眠時間と勉強時間
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/bibouroku/Imbalanced-learn/imbalanced_datasets_baseline.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/bibouroku/Imbalanced-learn/imbalanced_datasets_baseline.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   データセットの読み込み
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   ベースラインモデル
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>不均衡データセットのベースラインモデル評価</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   データセットの読み込み
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   ベースラインモデル
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
+<h1>不均衡データセットのベースラインモデル評価<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p><strong>投稿日：2022年6月13日<br>最終更新日：2022年6月13日</strong></p>
+<p><a class="reference external" href="https://imbalanced-learn.org/stable/">Imbalanced-learn</a>に実装されている<a class="reference external" href="https://imbalanced-learn.org/stable/datasets/index.html">27の不均衡なデータセット</a>を使用する。
+ここでは、以下のことを行う。</p>
+<ul class="simple">
+<li><p>27のデータセットの読み込み</p></li>
+<li><p>LightGBMによるベースラインモデルの評価</p></li>
+</ul>
+<p><strong>実行環境</strong><br>
+このnotebookはGoogle Colaboratoryで実行されている。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>python --version
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.7.13
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>ライブラリ</strong><br>
+使用しているライブラリは以下の4つ。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">imblearn</span>
+<span class="kn">import</span> <span class="nn">sklearn</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">lightgbm</span> <span class="k">as</span> <span class="nn">lgb</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Imbalanced-learn version </span><span class="si">{</span><span class="n">imblearn</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Scikit-learn version     </span><span class="si">{</span><span class="n">sklearn</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pandas version           </span><span class="si">{</span><span class="n">pd</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;LightGBM version         </span><span class="si">{</span><span class="n">lgb</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Imbalanced-learn version 0.8.1
+Scikit-learn version     1.0.2
+Pandas version           1.3.5
+LightGBM version         2.2.3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>データセットの読み込み<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>Imbalanced-learnのベンチマークデータセットを使用する。</p>
+<p>Imbalanced-learnのインストール<br>
+<strong>conda</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install -c conda-forge imbalanced-learn
+</pre></div>
+</div>
+<p>27のデータセットは<a class="reference external" href="https://imbalanced-learn.org/stable/references/generated/imblearn.datasets.fetch_datasets.html#imblearn.datasets.fetch_datasets"><code class="docutils literal notranslate"><span class="pre">imblearn.datasets.fetch_datasets()</span></code></a>で読み込む。
+データセットは<a class="reference external" href="https://zenodo.org/record/61452#.YqLgplXP1Gg">Imbalanced dataset for benchmarking: zenodo</a>からダウンロードされる。</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">imblearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_datasets</span>
+
+<span class="n">datasets</span> <span class="o">=</span> <span class="n">fetch_datasets</span><span class="p">()</span>
+<span class="n">datasets</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>OrderedDict([(&#39;ecoli&#39;,
+              {&#39;DESCR&#39;: &#39;ecoli&#39;,
+               &#39;data&#39;: array([[0.49, 0.29, 0.48, ..., 0.56, 0.24, 0.35],
+                      [0.07, 0.4 , 0.48, ..., 0.54, 0.35, 0.44],
+                      [0.56, 0.4 , 0.48, ..., 0.49, 0.37, 0.46],
+                      ...,
+                      [0.61, 0.6 , 0.48, ..., 0.44, 0.39, 0.38],
+                      [0.59, 0.61, 0.48, ..., 0.42, 0.42, 0.37],
+                      [0.74, 0.74, 0.48, ..., 0.31, 0.53, 0.52]]),
+               &#39;target&#39;: array([-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
+                       1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
+                       1,  1,  1,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1])}),
+             (&#39;optical_digits&#39;,
+              {&#39;DESCR&#39;: &#39;optical_digits&#39;,
+               &#39;data&#39;: array([[ 0.,  1.,  6., ...,  1.,  0.,  0.],
+                      [ 0.,  0., 10., ...,  3.,  0.,  0.],
+                      [ 0.,  0.,  8., ...,  0.,  0.,  0.],
+                      ...,
+                      [ 0.,  0.,  1., ...,  6.,  0.,  0.],
+                      [ 0.,  0.,  2., ..., 12.,  0.,  0.],
+                      [ 0.,  0., 10., ..., 12.,  1.,  0.]]),
+               &#39;target&#39;: array([-1, -1, -1, ...,  1, -1,  1])}),
+             (&#39;satimage&#39;,
+              {&#39;DESCR&#39;: &#39;satimage&#39;,
+               &#39;data&#39;: array([[ 92., 115., 120., ..., 107., 113.,  87.],
+                      [ 84., 102., 106., ...,  99., 104.,  79.],
+                      [ 84., 102., 102., ...,  99., 104.,  79.],
+                      ...,
+                      [ 56.,  68.,  91., ...,  83.,  92.,  74.],
+                      [ 56.,  68.,  87., ...,  83.,  92.,  70.],
+                      [ 60.,  71.,  91., ...,  79., 108.,  92.]]),
+               &#39;target&#39;: array([-1, -1, -1, ..., -1, -1, -1])}),
+             (&#39;pen_digits&#39;,
+              {&#39;DESCR&#39;: &#39;pen_digits&#39;,
+               &#39;data&#39;: array([[ 47., 100.,  27., ...,  90.,  40.,  98.],
+                      [  0.,  89.,  27., ...,   2., 100.,   6.],
+                      [  0.,  57.,  31., ...,  25.,  16.,   0.],
+                      ...,
+                      [ 56., 100.,  27., ...,  93.,  38.,  93.],
+                      [ 19., 100.,   0., ...,  97.,  10.,  81.],
+                      [ 38., 100.,  37., ...,  26.,  65.,   0.]]),
+               &#39;target&#39;: array([-1, -1, -1, ..., -1, -1, -1])}),
+             (&#39;abalone&#39;,
+              {&#39;DESCR&#39;: &#39;abalone&#39;,
+               &#39;data&#39;: array([[0.    , 0.    , 1.    , ..., 0.2245, 0.101 , 0.15  ],
+                      [0.    , 0.    , 1.    , ..., 0.0995, 0.0485, 0.07  ],
+                      [1.    , 0.    , 0.    , ..., 0.2565, 0.1415, 0.21  ],
+                      ...,
+                      [0.    , 0.    , 1.    , ..., 0.5255, 0.2875, 0.308 ],
+                      [1.    , 0.    , 0.    , ..., 0.531 , 0.261 , 0.296 ],
+                      [0.    , 0.    , 1.    , ..., 0.9455, 0.3765, 0.495 ]]),
+               &#39;target&#39;: array([-1,  1, -1, ..., -1, -1, -1])}),
+             (&#39;sick_euthyroid&#39;,
+              {&#39;DESCR&#39;: &#39;sick_euthyroid&#39;,
+               &#39;data&#39;: array([[ 72.,   0.,   1., ...,  87.,   1.,   0.],
+                      [ 45.,   1.,   0., ..., 112.,   1.,   0.],
+                      [ 64.,   1.,   0., ..., 123.,   1.,   0.],
+                      ...,
+                      [ 58.,   1.,   0., ...,  95.,   1.,   0.],
+                      [ 29.,   1.,   0., ...,  98.,   1.,   0.],
+                      [ 56.,   1.,   0., ..., 143.,   1.,   0.]]),
+               &#39;target&#39;: array([ 1,  1,  1, ..., -1, -1, -1])}),
+             (&#39;spectrometer&#39;,
+              {&#39;DESCR&#39;: &#39;spectrometer&#39;,
+               &#39;data&#39;: array([[ 4119.1675 ,  4897.299  ,  4163.969  , ...,  1392.4745 ,
+                        1278.9945 ,  1440.482  ],
+                      [ 7660.999  ,  7906.784  ,  7821.8984 , ...,  7015.5747 ,
+                        6962.22   ,  6263.44   ],
+                      [ 3196.4287 ,  3013.9722 ,  3003.149  , ...,  5954.388  ,
+                        5337.8887 ,  4638.5244 ],
+                      ...,
+                      [15375.604  , 14542.233  , 13849.163  , ...,   824.46655,
+                         703.36536,   649.1576 ],
+                      [11814.46   , 12896.945  , 13033.315  , ...,  1677.9924 ,
+                        1601.7352 ,  1470.1552 ],
+                      [14268.037  , 12925.045  , 12433.298  , ...,   702.66327,
+                         681.01196,   670.62964]]),
+               &#39;target&#39;: array([-1,  1,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  1, -1,
+                      -1, -1, -1, -1, -1,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1,  1, -1,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1,  1, -1, -1, -1, -1, -1, -1,  1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1,  1, -1, -1, -1, -1, -1,  1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1,  1,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1,  1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  1, -1, -1,  1, -1, -1, -1,
+                       1,  1, -1, -1, -1, -1, -1,  1,  1, -1, -1, -1,  1, -1, -1, -1, -1,
+                      -1, -1, -1,  1, -1, -1, -1, -1, -1, -1,  1, -1, -1, -1, -1, -1, -1,
+                       1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1,  1,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1,  1,  1,  1, -1, -1, -1, -1,  1, -1, -1, -1, -1, -1, -1, -1, -1,
+                       1, -1, -1, -1, -1, -1,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  1, -1, -1,
+                      -1, -1, -1, -1])}),
+             (&#39;car_eval_34&#39;,
+              {&#39;DESCR&#39;: &#39;car_eval_34&#39;,
+               &#39;data&#39;: array([[0., 0., 0., ..., 0., 1., 0.],
+                      [0., 0., 0., ..., 0., 0., 1.],
+                      [0., 0., 0., ..., 1., 0., 0.],
+                      ...,
+                      [0., 1., 0., ..., 0., 1., 0.],
+                      [0., 1., 0., ..., 0., 0., 1.],
+                      [0., 1., 0., ..., 1., 0., 0.]]),
+               &#39;target&#39;: array([-1, -1, -1, ..., -1,  1,  1])}),
+             (&#39;isolet&#39;,
+              {&#39;DESCR&#39;: &#39;isolet&#39;,
+               &#39;data&#39;: array([[-0.4394, -0.093 ,  0.1718, ...,  0.641 ,  0.5898, -0.4872],
+                      [-0.4348, -0.1198,  0.2474, ...,  0.4318,  0.4546, -0.091 ],
+                      [-0.233 ,  0.2124,  0.5014, ...,  0.254 ,  0.1588, -0.4762],
+                      ...,
+                      [-0.6696, -0.373 ,  0.1584, ...,  0.0728,  0.0728, -0.5818],
+                      [-0.5764, -0.1764,  0.5106, ...,  0.3044, -0.0434, -0.5   ],
+                      [-0.6624, -0.3334,  0.3666, ..., -0.0894, -0.1708, -0.317 ]]),
+               &#39;target&#39;: array([ 1,  1,  1, ..., -1, -1, -1])}),
+             (&#39;us_crime&#39;,
+              {&#39;DESCR&#39;: &#39;us_crime&#39;,
+               &#39;data&#39;: array([[0.19, 0.33, 0.02, ..., 0.26, 0.2 , 0.32],
+                      [0.  , 0.16, 0.12, ..., 0.12, 0.45, 0.  ],
+                      [0.  , 0.42, 0.49, ..., 0.21, 0.02, 0.  ],
+                      ...,
+                      [0.16, 0.37, 0.25, ..., 0.32, 0.18, 0.91],
+                      [0.08, 0.51, 0.06, ..., 0.38, 0.33, 0.22],
+                      [0.2 , 0.78, 0.14, ..., 0.3 , 0.05, 1.  ]]),
+               &#39;target&#39;: array([-1,  1, -1, ..., -1, -1, -1])}),
+             (&#39;yeast_ml8&#39;,
+              {&#39;DESCR&#39;: &#39;yeast_ml8&#39;,
+               &#39;data&#39;: array([[ 0.0937  ,  0.139771,  0.062774, ..., -0.042402,  0.118473,
+                        0.125632],
+                      [-0.022711, -0.050504, -0.035691, ..., -0.014191,  0.022783,
+                        0.123785],
+                      [-0.090407,  0.021198,  0.208712, ..., -0.063378, -0.084181,
+                       -0.034402],
+                      ...,
+                      [ 0.2416  ,  0.127602, -0.033072, ..., -0.038713, -0.026947,
+                        0.00562 ],
+                      [ 0.097274,  0.088109,  0.161101, ..., -0.019985,  0.280843,
+                        0.143382],
+                      [-0.001043,  0.030495,  0.007199, ...,  0.006505, -0.041307,
+                       -0.146233]]),
+               &#39;target&#39;: array([-1, -1, -1, ..., -1, -1, -1])}),
+             (&#39;scene&#39;,
+              {&#39;DESCR&#39;: &#39;scene&#39;,
+               &#39;data&#39;: array([[0.646467  , 0.666435  , 0.685047  , ..., 0.247298  , 0.0140249 ,
+                       0.0297093 ],
+                      [0.770156  , 0.767255  , 0.761053  , ..., 0.137833  , 0.0826722 ,
+                       0.0363203 ],
+                      [0.793984  , 0.772096  , 0.76182   , ..., 0.0511252 , 0.112506  ,
+                       0.0839236 ],
+                      ...,
+                      [0.952281  , 0.944987  , 0.905556  , ..., 0.0319002 , 0.0175471 ,
+                       0.0197344 ],
+                      [0.88399   , 0.899004  , 0.901019  , ..., 0.256158  , 0.226332  ,
+                       0.22307   ],
+                      [0.974915  , 0.866425  , 0.818144  , ..., 0.0051313 , 0.0250591 ,
+                       0.00403332]]),
+               &#39;target&#39;: array([ 1,  1, -1, ..., -1, -1, -1])}),
+             (&#39;libras_move&#39;,
+              {&#39;DESCR&#39;: &#39;libras_move&#39;,
+               &#39;data&#39;: array([[0.79691, 0.38194, 0.79691, ..., 0.3125 , 0.6383 , 0.29398],
+                      [0.67892, 0.27315, 0.68085, ..., 0.69213, 0.17215, 0.69213],
+                      [0.72147, 0.23611, 0.7234 , ..., 0.2662 , 0.78143, 0.27778],
+                      ...,
+                      [0.61122, 0.75926, 0.61122, ..., 0.52083, 0.44487, 0.5162 ],
+                      [0.65957, 0.79167, 0.65764, ..., 0.52546, 0.54159, 0.52083],
+                      [0.64023, 0.71991, 0.64217, ..., 0.49537, 0.52031, 0.49306]]),
+               &#39;target&#39;: array([ 1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,  1,
+                       1,  1,  1,  1,  1,  1,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1])}),
+             (&#39;thyroid_sick&#39;,
+              {&#39;DESCR&#39;: &#39;thyroid_sick&#39;,
+               &#39;data&#39;: array([[41.,  1.,  0., ...,  1.,  0.,  0.],
+                      [23.,  1.,  0., ...,  0.,  0.,  0.],
+                      [46.,  0.,  1., ...,  0.,  0.,  0.],
+                      ...,
+                      [74.,  1.,  0., ...,  0.,  0.,  0.],
+                      [72.,  0.,  1., ...,  0.,  0.,  1.],
+                      [64.,  1.,  0., ...,  0.,  0.,  0.]]),
+               &#39;target&#39;: array([-1, -1, -1, ..., -1, -1, -1])}),
+             (&#39;coil_2000&#39;,
+              {&#39;DESCR&#39;: &#39;coil_2000&#39;,
+               &#39;data&#39;: array([[33.,  1.,  3., ...,  0.,  0.,  0.],
+                      [37.,  1.,  2., ...,  0.,  0.,  0.],
+                      [37.,  1.,  2., ...,  0.,  0.,  0.],
+                      ...,
+                      [36.,  1.,  2., ...,  0.,  1.,  0.],
+                      [33.,  1.,  3., ...,  0.,  0.,  0.],
+                      [ 8.,  1.,  2., ...,  0.,  0.,  0.]]),
+               &#39;target&#39;: array([-1, -1, -1, ..., -1, -1, -1])}),
+             (&#39;arrhythmia&#39;,
+              {&#39;DESCR&#39;: &#39;arrhythmia&#39;,
+               &#39;data&#39;: array([[ 75. ,   0. , 190. , ...,   2.9,  23.3,  49.4],
+                      [ 56. ,   1. , 165. , ...,   2.1,  20.4,  38.8],
+                      [ 54. ,   0. , 172. , ...,   3.4,  12.3,  49. ],
+                      ...,
+                      [ 36. ,   0. , 166. , ...,   1. , -44.2, -33.2],
+                      [ 32. ,   1. , 155. , ...,   2.4,  25. ,  46.6],
+                      [ 78. ,   1. , 160. , ...,   1.6,  21.3,  32.8]]),
+               &#39;target&#39;: array([-1,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  1, -1, -1, -1,
+                      -1, -1, -1, -1, -1,  1, -1, -1, -1, -1, -1, -1, -1, -1,  1, -1, -1,
+                      -1, -1, -1, -1,  1, -1, -1,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                       1, -1,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1,  1, -1,  1, -1, -1, -1, -1, -1, -1, -1,  1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                       1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                       1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  1, -1, -1, -1,
+                      -1,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1,  1, -1, -1, -1, -1, -1,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1])}),
+             (&#39;solar_flare_m0&#39;,
+              {&#39;DESCR&#39;: &#39;solar_flare_m0&#39;,
+               &#39;data&#39;: array([[0., 1., 0., ..., 1., 1., 0.],
+                      [0., 0., 1., ..., 1., 1., 0.],
+                      [0., 1., 0., ..., 1., 0., 1.],
+                      ...,
+                      [0., 1., 0., ..., 1., 0., 1.],
+                      [0., 0., 0., ..., 1., 0., 1.],
+                      [1., 0., 0., ..., 1., 0., 1.]]),
+               &#39;target&#39;: array([-1, -1, -1, ..., -1, -1, -1])}),
+             (&#39;oil&#39;,
+              {&#39;DESCR&#39;: &#39;oil&#39;,
+               &#39;data&#39;: array([[1.000000e+00, 2.558000e+03, 1.506090e+03, ..., 3.324319e+04,
+                       6.574000e+01, 7.950000e+00],
+                      [2.000000e+00, 2.232500e+04, 7.911000e+01, ..., 5.157204e+04,
+                       6.573000e+01, 6.260000e+00],
+                      [3.000000e+00, 1.150000e+02, 1.449850e+03, ..., 3.169284e+04,
+                       6.581000e+01, 7.840000e+00],
+                      ...,
+                      [2.020000e+02, 1.400000e+01, 2.514000e+01, ..., 2.153050e+03,
+                       6.591000e+01, 6.120000e+00],
+                      [2.030000e+02, 1.000000e+01, 9.600000e+01, ..., 2.421430e+03,
+                       6.597000e+01, 6.320000e+00],
+                      [2.040000e+02, 1.100000e+01, 7.730000e+00, ..., 3.782680e+03,
+                       6.565000e+01, 6.260000e+00]]),
+               &#39;target&#39;: array([ 1, -1,  1,  1, -1,  1,  1, -1,  1,  1,  1, -1, -1, -1,  1,  1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1,  1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  1,
+                      -1, -1, -1, -1, -1, -1, -1, -1,  1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  1, -1, -1, -1, -1, -1,
+                       1, -1, -1,  1, -1,  1, -1, -1, -1, -1, -1, -1, -1, -1,  1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1,  1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1,  1, -1,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1,  1, -1, -1,  1, -1,  1, -1, -1, -1, -1, -1, -1,
+                      -1,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1,  1,  1,  1, -1, -1, -1, -1, -1, -1, -1, -1,  1, -1, -1, -1,
+                      -1,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1,  1, -1, -1, -1,  1, -1, -1, -1, -1, -1,  1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,  1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1,  1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
+                      -1, -1])}),
+             (&#39;car_eval_4&#39;,
+              {&#39;DESCR&#39;: &#39;car_eval_4&#39;,
+               &#39;data&#39;: array([[0., 0., 0., ..., 0., 1., 0.],
+                      [0., 0., 0., ..., 0., 0., 1.],
+                      [0., 0., 0., ..., 1., 0., 0.],
+                      ...,
+                      [0., 1., 0., ..., 0., 1., 0.],
+                      [0., 1., 0., ..., 0., 0., 1.],
+                      [0., 1., 0., ..., 1., 0., 0.]]),
+               &#39;target&#39;: array([-1, -1, -1, ..., -1, -1,  1])}),
+             (&#39;wine_quality&#39;,
+              {&#39;DESCR&#39;: &#39;wine_quality&#39;,
+               &#39;data&#39;: array([[ 7.  ,  0.27,  0.36, ...,  3.  ,  0.45,  8.8 ],
+                      [ 6.3 ,  0.3 ,  0.34, ...,  3.3 ,  0.49,  9.5 ],
+                      [ 8.1 ,  0.28,  0.4 , ...,  3.26,  0.44, 10.1 ],
+                      ...,
+                      [ 6.5 ,  0.24,  0.19, ...,  2.99,  0.46,  9.4 ],
+                      [ 5.5 ,  0.29,  0.3 , ...,  3.34,  0.38, 12.8 ],
+                      [ 6.  ,  0.21,  0.38, ...,  3.26,  0.32, 11.8 ]]),
+               &#39;target&#39;: array([-1, -1, -1, ..., -1, -1, -1])}),
+             (&#39;letter_img&#39;,
+              {&#39;DESCR&#39;: &#39;letter_img&#39;,
+               &#39;data&#39;: array([[ 2.,  8.,  3., ...,  8.,  0.,  8.],
+                      [ 5., 12.,  3., ...,  8.,  4., 10.],
+                      [ 4., 11.,  6., ...,  7.,  3.,  9.],
+                      ...,
+                      [ 6.,  9.,  6., ..., 12.,  2.,  4.],
+                      [ 2.,  3.,  4., ...,  9.,  5.,  8.],
+                      [ 4.,  9.,  6., ...,  7.,  2.,  8.]]),
+               &#39;target&#39;: array([-1, -1, -1, ..., -1, -1, -1])}),
+             (&#39;yeast_me2&#39;,
+              {&#39;DESCR&#39;: &#39;yeast_me2&#39;,
+               &#39;data&#39;: array([[0.58, 0.61, 0.47, ..., 0.  , 0.48, 0.22],
+                      [0.43, 0.67, 0.48, ..., 0.  , 0.53, 0.22],
+                      [0.64, 0.62, 0.49, ..., 0.  , 0.53, 0.22],
+                      ...,
+                      [0.67, 0.57, 0.36, ..., 0.  , 0.56, 0.22],
+                      [0.43, 0.4 , 0.6 , ..., 0.  , 0.53, 0.39],
+                      [0.65, 0.54, 0.54, ..., 0.  , 0.53, 0.22]]),
+               &#39;target&#39;: array([-1, -1, -1, ...,  1, -1, -1])}),
+             (&#39;webpage&#39;,
+              {&#39;DESCR&#39;: &#39;webpage&#39;,
+               &#39;data&#39;: array([[0., 0., 0., ..., 0., 0., 0.],
+                      [0., 0., 0., ..., 0., 1., 0.],
+                      [0., 0., 0., ..., 1., 0., 0.],
+                      ...,
+                      [0., 0., 0., ..., 1., 1., 0.],
+                      [0., 0., 0., ..., 0., 0., 0.],
+                      [0., 0., 0., ..., 0., 1., 0.]]),
+               &#39;target&#39;: array([-1, -1, -1, ...,  1,  1,  1])}),
+             (&#39;ozone_level&#39;,
+              {&#39;DESCR&#39;: &#39;ozone_level&#39;,
+               &#39;data&#39;: array([[ 8.0000e-01,  1.8000e+00,  2.4000e+00, ...,  1.0330e+04,
+                       -5.5000e+01,  0.0000e+00],
+                      [ 2.8000e+00,  3.2000e+00,  3.3000e+00, ...,  1.0275e+04,
+                       -5.5000e+01,  0.0000e+00],
+                      [ 2.9000e+00,  2.8000e+00,  2.6000e+00, ...,  1.0235e+04,
+                       -4.0000e+01,  0.0000e+00],
+                      ...,
+                      [ 8.0000e-01,  8.0000e-01,  1.2000e+00, ...,  1.0275e+04,
+                       -3.5000e+01,  0.0000e+00],
+                      [ 1.3000e+00,  9.0000e-01,  1.5000e+00, ...,  1.0245e+04,
+                       -3.0000e+01,  5.0000e-02],
+                      [ 1.5000e+00,  1.3000e+00,  1.8000e+00, ...,  1.0220e+04,
+                       -2.5000e+01,  0.0000e+00]]),
+               &#39;target&#39;: array([-1, -1, -1, ..., -1, -1, -1])}),
+             (&#39;mammography&#39;,
+              {&#39;DESCR&#39;: &#39;mammography&#39;,
+               &#39;data&#39;: array([[ 0.23001961,  5.0725783 , -0.27606055,  0.83244412, -0.37786573,
+                        0.4803223 ],
+                      [ 0.15549112, -0.16939038,  0.67065219, -0.85955255, -0.37786573,
+                       -0.94572324],
+                      [-0.78441482, -0.44365372,  5.6747053 , -0.85955255, -0.37786573,
+                       -0.94572324],
+                      ...,
+                      [ 1.2049878 ,  1.7637238 , -0.50146835,  1.5624078 ,  6.4890725 ,
+                        0.93129397],
+                      [ 0.73664398, -0.22247361, -0.05065276,  1.5096647 ,  0.53926914,
+                        1.3152293 ],
+                      [ 0.17700275, -0.19150839, -0.50146835,  1.5788636 ,  7.750705  ,
+                        1.5559507 ]]),
+               &#39;target&#39;: array([-1, -1, -1, ...,  1,  1,  1])}),
+             (&#39;protein_homo&#39;,
+              {&#39;DESCR&#39;: &#39;protein_homo&#39;,
+               &#39;data&#39;: array([[ 52.  ,  32.69,   0.3 , ...,  -0.35,   0.26,   0.76],
+                      [ 58.  ,  33.33,   0.  , ...,   1.16,   0.39,   0.73],
+                      [ 77.  ,  27.27,  -0.91, ...,  -0.76,   0.26,   0.24],
+                      ...,
+                      [100.  ,  71.76,  41.92, ...,   3.41,   0.44,   0.78],
+                      [ 85.65,  26.46,   1.85, ...,   2.88,   0.54,   0.77],
+                      [ 87.5 ,  29.33,   5.84, ...,  -0.58,   0.16,   0.23]]),
+               &#39;target&#39;: array([-1, -1, -1, ...,  1, -1,  1])}),
+             (&#39;abalone_19&#39;,
+              {&#39;DESCR&#39;: &#39;abalone_19&#39;,
+               &#39;data&#39;: array([[0.    , 0.    , 1.    , ..., 0.2245, 0.101 , 0.15  ],
+                      [0.    , 0.    , 1.    , ..., 0.0995, 0.0485, 0.07  ],
+                      [1.    , 0.    , 0.    , ..., 0.2565, 0.1415, 0.21  ],
+                      ...,
+                      [0.    , 0.    , 1.    , ..., 0.5255, 0.2875, 0.308 ],
+                      [1.    , 0.    , 0.    , ..., 0.531 , 0.261 , 0.296 ],
+                      [0.    , 0.    , 1.    , ..., 0.9455, 0.3765, 0.495 ]]),
+               &#39;target&#39;: array([-1, -1, -1, ..., -1, -1, -1])})])
+</pre></div>
+</div>
+</div>
+</div>
+<p>データセットの情報は下記の表にまとめてある。
+Nameはデータセットの名前であり、個々のデータセットにアクセスするときに使用する。
+Repositoryはデータセットの配布場所である。
+中には多クラス分類問題のデータセットが含まれているが、二クラス分類問題となるように加工されている。
+Targetは少数クラスのカテゴリを指している。
+Ratioは多数クラスと少数クラス間のサンプル数の比である。
+これは、不均衡の度合いを示す。
+#Sはサンプル数であり、#Fは特徴数である。
+カテゴリ変数がone-hot表現に変換されていることに注意する。</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>ID</p></th>
+<th class="head"><p>Name</p></th>
+<th class="head"><p>Repository &amp; Target</p></th>
+<th class="text-align:right head"><p>Ratio</p></th>
+<th class="text-align:right head"><p>#S</p></th>
+<th class="text-align:right head"><p>#F</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>ecoli</p></td>
+<td><p>UCI, target: imU</p></td>
+<td class="text-align:right"><p>8.6:1</p></td>
+<td class="text-align:right"><p>336</p></td>
+<td class="text-align:right"><p>7</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>optical_digits</p></td>
+<td><p>UCI, target: 8</p></td>
+<td class="text-align:right"><p>9.1:1</p></td>
+<td class="text-align:right"><p>5,620</p></td>
+<td class="text-align:right"><p>64</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>satimage</p></td>
+<td><p>UCI, target: 4</p></td>
+<td class="text-align:right"><p>9.3:1</p></td>
+<td class="text-align:right"><p>6,435</p></td>
+<td class="text-align:right"><p>36</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>pen_digits</p></td>
+<td><p>UCI, target: 5</p></td>
+<td class="text-align:right"><p>9.4:1</p></td>
+<td class="text-align:right"><p>10,992</p></td>
+<td class="text-align:right"><p>16</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>abalone</p></td>
+<td><p>UCI, target: 7</p></td>
+<td class="text-align:right"><p>9.7:1</p></td>
+<td class="text-align:right"><p>4,177</p></td>
+<td class="text-align:right"><p>10</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>sick_euthyroid</p></td>
+<td><p>UCI, target: sick euthyroid</p></td>
+<td class="text-align:right"><p>9.8:1</p></td>
+<td class="text-align:right"><p>3,163</p></td>
+<td class="text-align:right"><p>42</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>spectrometer</p></td>
+<td><p>UCI, target: &gt;=44</p></td>
+<td class="text-align:right"><p>11:1</p></td>
+<td class="text-align:right"><p>531</p></td>
+<td class="text-align:right"><p>93</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>car_eval_34</p></td>
+<td><p>UCI, target: good, v good</p></td>
+<td class="text-align:right"><p>12:1</p></td>
+<td class="text-align:right"><p>1,728</p></td>
+<td class="text-align:right"><p>21</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>isolet</p></td>
+<td><p>UCI, target: A, B</p></td>
+<td class="text-align:right"><p>12:1</p></td>
+<td class="text-align:right"><p>7,797</p></td>
+<td class="text-align:right"><p>617</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>us_crime</p></td>
+<td><p>UCI, target: &gt;0.65</p></td>
+<td class="text-align:right"><p>12:1</p></td>
+<td class="text-align:right"><p>1,994</p></td>
+<td class="text-align:right"><p>100</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>yeast_ml8</p></td>
+<td><p>LIBSVM, target: 8</p></td>
+<td class="text-align:right"><p>13:1</p></td>
+<td class="text-align:right"><p>2,417</p></td>
+<td class="text-align:right"><p>103</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>scene</p></td>
+<td><p>LIBSVM, target: &gt;one label</p></td>
+<td class="text-align:right"><p>13:1</p></td>
+<td class="text-align:right"><p>2,407</p></td>
+<td class="text-align:right"><p>294</p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p>libras_move</p></td>
+<td><p>UCI, target: 1</p></td>
+<td class="text-align:right"><p>14:1</p></td>
+<td class="text-align:right"><p>360</p></td>
+<td class="text-align:right"><p>90</p></td>
+</tr>
+<tr class="row-odd"><td><p>14</p></td>
+<td><p>thyroid_sick</p></td>
+<td><p>UCI, target: sick</p></td>
+<td class="text-align:right"><p>15:1</p></td>
+<td class="text-align:right"><p>3,772</p></td>
+<td class="text-align:right"><p>52</p></td>
+</tr>
+<tr class="row-even"><td><p>15</p></td>
+<td><p>coil_2000</p></td>
+<td><p>KDD, CoIL, target: minority</p></td>
+<td class="text-align:right"><p>16:1</p></td>
+<td class="text-align:right"><p>9,822</p></td>
+<td class="text-align:right"><p>85</p></td>
+</tr>
+<tr class="row-odd"><td><p>16</p></td>
+<td><p>arrhythmia</p></td>
+<td><p>UCI, target: 06</p></td>
+<td class="text-align:right"><p>17:1</p></td>
+<td class="text-align:right"><p>452</p></td>
+<td class="text-align:right"><p>278</p></td>
+</tr>
+<tr class="row-even"><td><p>17</p></td>
+<td><p>solar_flare_m0</p></td>
+<td><p>UCI, target: M-&gt;0</p></td>
+<td class="text-align:right"><p>19:1</p></td>
+<td class="text-align:right"><p>1,389</p></td>
+<td class="text-align:right"><p>32</p></td>
+</tr>
+<tr class="row-odd"><td><p>18</p></td>
+<td><p>oil</p></td>
+<td><p>UCI, target: minority</p></td>
+<td class="text-align:right"><p>22:1</p></td>
+<td class="text-align:right"><p>937</p></td>
+<td class="text-align:right"><p>49</p></td>
+</tr>
+<tr class="row-even"><td><p>19</p></td>
+<td><p>car_eval_4</p></td>
+<td><p>UCI, target: vgood</p></td>
+<td class="text-align:right"><p>26:1</p></td>
+<td class="text-align:right"><p>1,728</p></td>
+<td class="text-align:right"><p>21</p></td>
+</tr>
+<tr class="row-odd"><td><p>20</p></td>
+<td><p>wine_quality</p></td>
+<td><p>UCI, wine, target: &lt;=4</p></td>
+<td class="text-align:right"><p>26:1</p></td>
+<td class="text-align:right"><p>4,898</p></td>
+<td class="text-align:right"><p>11</p></td>
+</tr>
+<tr class="row-even"><td><p>21</p></td>
+<td><p>letter_img</p></td>
+<td><p>UCI, target: Z</p></td>
+<td class="text-align:right"><p>26:1</p></td>
+<td class="text-align:right"><p>20,000</p></td>
+<td class="text-align:right"><p>16</p></td>
+</tr>
+<tr class="row-odd"><td><p>22</p></td>
+<td><p>yeast_me2</p></td>
+<td><p>UCI, target: ME2</p></td>
+<td class="text-align:right"><p>28:1</p></td>
+<td class="text-align:right"><p>1,484</p></td>
+<td class="text-align:right"><p>8</p></td>
+</tr>
+<tr class="row-even"><td><p>23</p></td>
+<td><p>webpage</p></td>
+<td><p>LIBSVM, w7a, target: minority</p></td>
+<td class="text-align:right"><p>33:1</p></td>
+<td class="text-align:right"><p>34,780</p></td>
+<td class="text-align:right"><p>300</p></td>
+</tr>
+<tr class="row-odd"><td><p>24</p></td>
+<td><p>ozone_level</p></td>
+<td><p>UCI, ozone, data</p></td>
+<td class="text-align:right"><p>34:1</p></td>
+<td class="text-align:right"><p>2,536</p></td>
+<td class="text-align:right"><p>72</p></td>
+</tr>
+<tr class="row-even"><td><p>25</p></td>
+<td><p>mammography</p></td>
+<td><p>UCI, target: minority</p></td>
+<td class="text-align:right"><p>42:1</p></td>
+<td class="text-align:right"><p>11,183</p></td>
+<td class="text-align:right"><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p>26</p></td>
+<td><p>protein_homo</p></td>
+<td><p>KDD CUP 2004, minority</p></td>
+<td class="text-align:right"><p>111:1</p></td>
+<td class="text-align:right"><p>145,751</p></td>
+<td class="text-align:right"><p>74</p></td>
+</tr>
+<tr class="row-even"><td><p>27</p></td>
+<td><p>abalone_19</p></td>
+<td><p>UCI, target: 19</p></td>
+<td class="text-align:right"><p>130:1</p></td>
+<td class="text-align:right"><p>4,177</p></td>
+<td class="text-align:right"><p>10</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id3">
+<h2>ベースラインモデル<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>ベースラインモデルには<a class="reference external" href="https://lightgbm.readthedocs.io/en/latest/">LightGBM</a>を使用する。</p>
+<p>LightGBMのインストール<br>
+<strong>conda</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install -c conda-forge lightgbm
+</pre></div>
+</div>
+<p>データセットを読み込んだ時点で最低限の前処理が施されているため、前処理を行わずともLightGBMを訓練することが可能である。
+評価指標には正解率、F1値、適合率、再現率を用いて、層化10分割交差検証を行う。
+これを<code class="docutils literal notranslate"><span class="pre">sklearn.model_selection.cross_validata()</span></code>で実装する。
+実行時に<code class="docutils literal notranslate"><span class="pre">UndefinedMetricWarning</span></code>が出る場合は、おそらく陽性を検出できていないことを示している。
+つまり、すべての予測が陰性となっていることを示している。
+そのため、適合率、再現率、F1値は0になっている。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">StratifiedKFold</span><span class="p">,</span> <span class="n">cross_validate</span>
+
+<span class="n">dataset_scores</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">scoring</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;accuracy&quot;</span><span class="p">,</span> <span class="s2">&quot;f1&quot;</span><span class="p">,</span> <span class="s2">&quot;precision&quot;</span><span class="p">,</span> <span class="s2">&quot;recall&quot;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">dataset_name</span> <span class="ow">in</span> <span class="n">datasets</span><span class="p">:</span>
+    <span class="n">kfold</span> <span class="o">=</span> <span class="n">StratifiedKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">scores</span> <span class="o">=</span> <span class="n">cross_validate</span><span class="p">(</span>
+        <span class="n">lgb</span><span class="o">.</span><span class="n">LGBMClassifier</span><span class="p">(),</span>
+        <span class="n">datasets</span><span class="p">[</span><span class="n">dataset_name</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+        <span class="n">datasets</span><span class="p">[</span><span class="n">dataset_name</span><span class="p">]</span><span class="o">.</span><span class="n">target</span><span class="p">,</span>
+        <span class="n">scoring</span><span class="o">=</span><span class="n">scoring</span><span class="p">,</span>
+        <span class="n">cv</span><span class="o">=</span><span class="n">kfold</span>
+    <span class="p">)</span>
+    <span class="n">dataset_scores</span><span class="p">[</span><span class="n">dataset_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">scores</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>他の評価指標を検討したい場合は、まずは<code class="docutils literal notranslate"><span class="pre">sklearn.metrics.SCORERS</span></code>を参照するとよい。</p>
+<div class="cell tag_output_scroll docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sklearn</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">SCORERS</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;accuracy&#39;: make_scorer(accuracy_score),
+ &#39;adjusted_mutual_info_score&#39;: make_scorer(adjusted_mutual_info_score),
+ &#39;adjusted_rand_score&#39;: make_scorer(adjusted_rand_score),
+ &#39;average_precision&#39;: make_scorer(average_precision_score, needs_threshold=True),
+ &#39;balanced_accuracy&#39;: make_scorer(balanced_accuracy_score),
+ &#39;completeness_score&#39;: make_scorer(completeness_score),
+ &#39;explained_variance&#39;: make_scorer(explained_variance_score),
+ &#39;f1&#39;: make_scorer(f1_score, average=binary),
+ &#39;f1_macro&#39;: make_scorer(f1_score, pos_label=None, average=macro),
+ &#39;f1_micro&#39;: make_scorer(f1_score, pos_label=None, average=micro),
+ &#39;f1_samples&#39;: make_scorer(f1_score, pos_label=None, average=samples),
+ &#39;f1_weighted&#39;: make_scorer(f1_score, pos_label=None, average=weighted),
+ &#39;fowlkes_mallows_score&#39;: make_scorer(fowlkes_mallows_score),
+ &#39;homogeneity_score&#39;: make_scorer(homogeneity_score),
+ &#39;jaccard&#39;: make_scorer(jaccard_score, average=binary),
+ &#39;jaccard_macro&#39;: make_scorer(jaccard_score, pos_label=None, average=macro),
+ &#39;jaccard_micro&#39;: make_scorer(jaccard_score, pos_label=None, average=micro),
+ &#39;jaccard_samples&#39;: make_scorer(jaccard_score, pos_label=None, average=samples),
+ &#39;jaccard_weighted&#39;: make_scorer(jaccard_score, pos_label=None, average=weighted),
+ &#39;max_error&#39;: make_scorer(max_error, greater_is_better=False),
+ &#39;mutual_info_score&#39;: make_scorer(mutual_info_score),
+ &#39;neg_brier_score&#39;: make_scorer(brier_score_loss, greater_is_better=False, needs_proba=True),
+ &#39;neg_log_loss&#39;: make_scorer(log_loss, greater_is_better=False, needs_proba=True),
+ &#39;neg_mean_absolute_error&#39;: make_scorer(mean_absolute_error, greater_is_better=False),
+ &#39;neg_mean_absolute_percentage_error&#39;: make_scorer(mean_absolute_percentage_error, greater_is_better=False),
+ &#39;neg_mean_gamma_deviance&#39;: make_scorer(mean_gamma_deviance, greater_is_better=False),
+ &#39;neg_mean_poisson_deviance&#39;: make_scorer(mean_poisson_deviance, greater_is_better=False),
+ &#39;neg_mean_squared_error&#39;: make_scorer(mean_squared_error, greater_is_better=False),
+ &#39;neg_mean_squared_log_error&#39;: make_scorer(mean_squared_log_error, greater_is_better=False),
+ &#39;neg_median_absolute_error&#39;: make_scorer(median_absolute_error, greater_is_better=False),
+ &#39;neg_root_mean_squared_error&#39;: make_scorer(mean_squared_error, greater_is_better=False, squared=False),
+ &#39;normalized_mutual_info_score&#39;: make_scorer(normalized_mutual_info_score),
+ &#39;precision&#39;: make_scorer(precision_score, average=binary),
+ &#39;precision_macro&#39;: make_scorer(precision_score, pos_label=None, average=macro),
+ &#39;precision_micro&#39;: make_scorer(precision_score, pos_label=None, average=micro),
+ &#39;precision_samples&#39;: make_scorer(precision_score, pos_label=None, average=samples),
+ &#39;precision_weighted&#39;: make_scorer(precision_score, pos_label=None, average=weighted),
+ &#39;r2&#39;: make_scorer(r2_score),
+ &#39;rand_score&#39;: make_scorer(rand_score),
+ &#39;recall&#39;: make_scorer(recall_score, average=binary),
+ &#39;recall_macro&#39;: make_scorer(recall_score, pos_label=None, average=macro),
+ &#39;recall_micro&#39;: make_scorer(recall_score, pos_label=None, average=micro),
+ &#39;recall_samples&#39;: make_scorer(recall_score, pos_label=None, average=samples),
+ &#39;recall_weighted&#39;: make_scorer(recall_score, pos_label=None, average=weighted),
+ &#39;roc_auc&#39;: make_scorer(roc_auc_score, needs_threshold=True),
+ &#39;roc_auc_ovo&#39;: make_scorer(roc_auc_score, needs_proba=True, multi_class=ovo),
+ &#39;roc_auc_ovo_weighted&#39;: make_scorer(roc_auc_score, needs_proba=True, multi_class=ovo, average=weighted),
+ &#39;roc_auc_ovr&#39;: make_scorer(roc_auc_score, needs_proba=True, multi_class=ovr),
+ &#39;roc_auc_ovr_weighted&#39;: make_scorer(roc_auc_score, needs_proba=True, multi_class=ovr, average=weighted),
+ &#39;top_k_accuracy&#39;: make_scorer(top_k_accuracy_score, needs_threshold=True),
+ &#39;v_measure_score&#39;: make_scorer(v_measure_score)}
+</pre></div>
+</div>
+</div>
+</div>
+<p>今回は、この中の<code class="docutils literal notranslate"><span class="pre">accuracy</span></code>, <code class="docutils literal notranslate"><span class="pre">f1</span></code>, <code class="docutils literal notranslate"><span class="pre">precision</span></code>, <code class="docutils literal notranslate"><span class="pre">recall</span></code>を選択した。</p>
+<p><code class="docutils literal notranslate"><span class="pre">dataset_scores</span></code>には評価結果だけでなくモデルの訓練時間も含まれる。例えば、ecoliデータセットの交差検証の結果を確認する。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">dataset_scores</span><span class="p">[</span><span class="s2">&quot;ecoli&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;fit_time&#39;: array([0.10717535, 0.0581913 , 0.04513001, 0.07077527, 0.03441525,
+        0.10235572, 0.04713297, 0.09230876, 0.05307102, 0.03584218]),
+ &#39;score_time&#39;: array([0.00427794, 0.0035553 , 0.01027751, 0.0081737 , 0.00449729,
+        0.00350666, 0.01042509, 0.00973129, 0.0230062 , 0.02368474]),
+ &#39;test_accuracy&#39;: array([1.        , 0.88235294, 0.94117647, 0.94117647, 0.88235294,
+        0.97058824, 0.90909091, 0.93939394, 0.90909091, 0.93939394]),
+ &#39;test_f1&#39;: array([1.        , 0.5       , 0.66666667, 0.66666667, 0.5       ,
+        0.85714286, 0.57142857, 0.75      , 0.        , 0.66666667]),
+ &#39;test_precision&#39;: array([1.        , 0.5       , 1.        , 1.        , 0.5       ,
+        1.        , 0.5       , 0.6       , 0.        , 0.66666667]),
+ &#39;test_recall&#39;: array([1.        , 0.5       , 0.5       , 0.5       , 0.5       ,
+        0.75      , 0.66666667, 1.        , 0.        , 0.66666667])}
+</pre></div>
+</div>
+</div>
+</div>
+<p>各フォールドの訓練時間は<code class="docutils literal notranslate"><span class="pre">&quot;fit_time&quot;</span></code>でアクセスできる。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;各フォールドの訓練時間</span><span class="se">\n</span><span class="si">{</span><span class="n">dataset_scores</span><span class="p">[</span><span class="s2">&quot;ecoli&quot;</span><span class="p">][</span><span class="s2">&quot;fit_time&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;モデル訓練時間の平均</span><span class="se">\n</span><span class="si">{</span><span class="n">dataset_scores</span><span class="p">[</span><span class="s2">&quot;ecoli&quot;</span><span class="p">][</span><span class="s2">&quot;fit_time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s1">.4f</span><span class="si">}</span><span class="s1">秒&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>各フォールドの訓練時間
+[0.10717535 0.0581913  0.04513001 0.07077527 0.03441525 0.10235572
+ 0.04713297 0.09230876 0.05307102 0.03584218]
+モデル訓練時間の平均
+0.0646秒
+</pre></div>
+</div>
+</div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">dataset_scores</span></code>をpandasのデータフレームに変換して見やすくする。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">scores_dict</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">dataset_name</span> <span class="ow">in</span> <span class="n">datasets</span><span class="p">:</span>
+    <span class="n">scores_dict</span><span class="p">[</span><span class="n">dataset_name</span><span class="p">]</span> <span class="o">=</span> \
+        <span class="p">[</span><span class="s2">&quot;</span><span class="si">{:.4f}</span><span class="s2"> ± </span><span class="si">{:.4f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">dataset_scores</span><span class="p">[</span><span class="n">dataset_name</span><span class="p">][</span><span class="s2">&quot;test_&quot;</span><span class="o">+</span><span class="n">score_name</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span>
+            <span class="n">dataset_scores</span><span class="p">[</span><span class="n">dataset_name</span><span class="p">][</span><span class="s2">&quot;test_&quot;</span><span class="o">+</span><span class="n">score_name</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+        <span class="p">)</span> <span class="k">for</span> <span class="n">score_name</span> <span class="ow">in</span> <span class="n">scoring</span><span class="p">]</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">scores_dict</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">scoring</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+  <div id="df-8707d48e-0abf-4b4d-960b-6802ee7732d9">
+    <div class="colab-df-container">
+      <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>accuracy</th>
+      <th>f1</th>
+      <th>precision</th>
+      <th>recall</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ecoli</th>
+      <td>0.9315 ± 0.0352</td>
+      <td>0.6179 ± 0.2529</td>
+      <td>0.6767 ± 0.3124</td>
+      <td>0.6083 ± 0.2740</td>
+    </tr>
+    <tr>
+      <th>optical_digits</th>
+      <td>0.9909 ± 0.0045</td>
+      <td>0.9516 ± 0.0255</td>
+      <td>0.9903 ± 0.0098</td>
+      <td>0.9169 ± 0.0440</td>
+    </tr>
+    <tr>
+      <th>satimage</th>
+      <td>0.9500 ± 0.0062</td>
+      <td>0.7118 ± 0.0453</td>
+      <td>0.8055 ± 0.0324</td>
+      <td>0.6402 ± 0.0636</td>
+    </tr>
+    <tr>
+      <th>pen_digits</th>
+      <td>0.9978 ± 0.0017</td>
+      <td>0.9885 ± 0.0090</td>
+      <td>0.9962 ± 0.0063</td>
+      <td>0.9811 ± 0.0184</td>
+    </tr>
+    <tr>
+      <th>abalone</th>
+      <td>0.8911 ± 0.0100</td>
+      <td>0.1980 ± 0.0558</td>
+      <td>0.3272 ± 0.0860</td>
+      <td>0.1460 ± 0.0490</td>
+    </tr>
+    <tr>
+      <th>sick_euthyroid</th>
+      <td>0.9788 ± 0.0072</td>
+      <td>0.8823 ± 0.0428</td>
+      <td>0.9012 ± 0.0280</td>
+      <td>0.8674 ± 0.0725</td>
+    </tr>
+    <tr>
+      <th>spectrometer</th>
+      <td>0.9718 ± 0.0211</td>
+      <td>0.8150 ± 0.1340</td>
+      <td>0.9000 ± 0.1342</td>
+      <td>0.7800 ± 0.2040</td>
+    </tr>
+    <tr>
+      <th>car_eval_34</th>
+      <td>0.9936 ± 0.0055</td>
+      <td>0.9597 ± 0.0341</td>
+      <td>0.9531 ± 0.0575</td>
+      <td>0.9703 ± 0.0484</td>
+    </tr>
+    <tr>
+      <th>isolet</th>
+      <td>0.9859 ± 0.0032</td>
+      <td>0.9040 ± 0.0232</td>
+      <td>0.9460 ± 0.0213</td>
+      <td>0.8667 ± 0.0394</td>
+    </tr>
+    <tr>
+      <th>us_crime</th>
+      <td>0.9408 ± 0.0092</td>
+      <td>0.4881 ± 0.1006</td>
+      <td>0.7169 ± 0.1391</td>
+      <td>0.3867 ± 0.1147</td>
+    </tr>
+    <tr>
+      <th>yeast_ml8</th>
+      <td>0.9259 ± 0.0021</td>
+      <td>0.0000 ± 0.0000</td>
+      <td>0.0000 ± 0.0000</td>
+      <td>0.0000 ± 0.0000</td>
+    </tr>
+    <tr>
+      <th>scene</th>
+      <td>0.9273 ± 0.0053</td>
+      <td>0.1051 ± 0.0982</td>
+      <td>0.4067 ± 0.3969</td>
+      <td>0.0624 ± 0.0592</td>
+    </tr>
+    <tr>
+      <th>libras_move</th>
+      <td>0.9750 ± 0.0194</td>
+      <td>0.7600 ± 0.1837</td>
+      <td>0.9667 ± 0.1000</td>
+      <td>0.6833 ± 0.2734</td>
+    </tr>
+    <tr>
+      <th>thyroid_sick</th>
+      <td>0.9899 ± 0.0050</td>
+      <td>0.9154 ± 0.0427</td>
+      <td>0.9411 ± 0.0402</td>
+      <td>0.8918 ± 0.0522</td>
+    </tr>
+    <tr>
+      <th>coil_2000</th>
+      <td>0.9347 ± 0.0026</td>
+      <td>0.0636 ± 0.0398</td>
+      <td>0.2162 ± 0.1317</td>
+      <td>0.0375 ± 0.0237</td>
+    </tr>
+    <tr>
+      <th>arrhythmia</th>
+      <td>0.9691 ± 0.0226</td>
+      <td>0.6800 ± 0.2914</td>
+      <td>0.7000 ± 0.3055</td>
+      <td>0.6667 ± 0.2887</td>
+    </tr>
+    <tr>
+      <th>solar_flare_m0</th>
+      <td>0.9417 ± 0.0134</td>
+      <td>0.1175 ± 0.1188</td>
+      <td>0.2119 ± 0.2222</td>
+      <td>0.0881 ± 0.0965</td>
+    </tr>
+    <tr>
+      <th>oil</th>
+      <td>0.9626 ± 0.0161</td>
+      <td>0.3960 ± 0.2842</td>
+      <td>0.5833 ± 0.4167</td>
+      <td>0.3100 ± 0.2289</td>
+    </tr>
+    <tr>
+      <th>car_eval_4</th>
+      <td>1.0000 ± 0.0000</td>
+      <td>1.0000 ± 0.0000</td>
+      <td>1.0000 ± 0.0000</td>
+      <td>1.0000 ± 0.0000</td>
+    </tr>
+    <tr>
+      <th>wine_quality</th>
+      <td>0.9657 ± 0.0034</td>
+      <td>0.3210 ± 0.0588</td>
+      <td>0.6472 ± 0.1637</td>
+      <td>0.2181 ± 0.0467</td>
+    </tr>
+    <tr>
+      <th>letter_img</th>
+      <td>0.9981 ± 0.0010</td>
+      <td>0.9737 ± 0.0134</td>
+      <td>0.9876 ± 0.0152</td>
+      <td>0.9605 ± 0.0222</td>
+    </tr>
+    <tr>
+      <th>yeast_me2</th>
+      <td>0.9623 ± 0.0091</td>
+      <td>0.2528 ± 0.1844</td>
+      <td>0.4250 ± 0.3622</td>
+      <td>0.2000 ± 0.1549</td>
+    </tr>
+    <tr>
+      <th>webpage</th>
+      <td>0.9884 ± 0.0015</td>
+      <td>0.7671 ± 0.0330</td>
+      <td>0.8867 ± 0.0294</td>
+      <td>0.6769 ± 0.0415</td>
+    </tr>
+    <tr>
+      <th>ozone_level</th>
+      <td>0.9708 ± 0.0061</td>
+      <td>0.1728 ± 0.1936</td>
+      <td>0.3500 ± 0.3471</td>
+      <td>0.1268 ± 0.1622</td>
+    </tr>
+    <tr>
+      <th>mammography</th>
+      <td>0.9880 ± 0.0024</td>
+      <td>0.6936 ± 0.0651</td>
+      <td>0.8527 ± 0.0698</td>
+      <td>0.5885 ± 0.0789</td>
+    </tr>
+    <tr>
+      <th>protein_homo</th>
+      <td>0.9976 ± 0.0005</td>
+      <td>0.8509 ± 0.0310</td>
+      <td>0.9274 ± 0.0254</td>
+      <td>0.7870 ± 0.0427</td>
+    </tr>
+    <tr>
+      <th>abalone_19</th>
+      <td>0.9919 ± 0.0012</td>
+      <td>0.0000 ± 0.0000</td>
+      <td>0.0000 ± 0.0000</td>
+      <td>0.0000 ± 0.0000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+      <button class="colab-df-convert" onclick="convertToInteractive('df-8707d48e-0abf-4b4d-960b-6802ee7732d9')"
+              title="Convert this dataframe to an interactive table."
+              style="display:none;">
+
+  <svg xmlns="http://www.w3.org/2000/svg" height="24px"viewBox="0 0 24 24"
+       width="24px">
+    <path d="M0 0h24v24H0V0z" fill="none"/>
+    <path d="M18.56 5.44l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94zm-11 1L8.5 8.5l.94-2.06 2.06-.94-2.06-.94L8.5 2.5l-.94 2.06-2.06.94zm10 10l.94 2.06.94-2.06 2.06-.94-2.06-.94-.94-2.06-.94 2.06-2.06.94z"/><path d="M17.41 7.96l-1.37-1.37c-.4-.4-.92-.59-1.43-.59-.52 0-1.04.2-1.43.59L10.3 9.45l-7.72 7.72c-.78.78-.78 2.05 0 2.83L4 21.41c.39.39.9.59 1.41.59.51 0 1.02-.2 1.41-.59l7.78-7.78 2.81-2.81c.8-.78.8-2.07 0-2.86zM5.41 20L4 18.59l7.72-7.72 1.47 1.35L5.41 20z"/>
+  </svg>
+      </button>
+
+  <style>
+    .colab-df-container {
+      display:flex;
+      flex-wrap:wrap;
+      gap: 12px;
+    }
+
+    .colab-df-convert {
+      background-color: #E8F0FE;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+      fill: #1967D2;
+      height: 32px;
+      padding: 0 0 0 0;
+      width: 32px;
+    }
+
+    .colab-df-convert:hover {
+      background-color: #E2EBFA;
+      box-shadow: 0px 1px 2px rgba(60, 64, 67, 0.3), 0px 1px 3px 1px rgba(60, 64, 67, 0.15);
+      fill: #174EA6;
+    }
+
+    [theme=dark] .colab-df-convert {
+      background-color: #3B4455;
+      fill: #D2E3FC;
+    }
+
+    [theme=dark] .colab-df-convert:hover {
+      background-color: #434B5C;
+      box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+      filter: drop-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+      fill: #FFFFFF;
+    }
+  </style>
+
+      <script>
+        const buttonEl =
+          document.querySelector('#df-8707d48e-0abf-4b4d-960b-6802ee7732d9 button.colab-df-convert');
+        buttonEl.style.display =
+          google.colab.kernel.accessAllowed ? 'block' : 'none';
+
+        async function convertToInteractive(key) {
+          const element = document.querySelector('#df-8707d48e-0abf-4b4d-960b-6802ee7732d9');
+          const dataTable =
+            await google.colab.kernel.invokeFunction('convertToInteractive',
+                                                     [key], {});
+          if (!dataTable) return;
+
+          const docLinkHtml = 'Like what you see? Visit the ' +
+            '<a target="_blank" href=https://colab.research.google.com/notebooks/data_table.ipynb>data table notebook</a>'
+            + ' to learn more about interactive tables.';
+          element.innerHTML = '';
+          dataTable['output_type'] = 'display_data';
+          await google.colab.output.renderOutput(dataTable, element);
+          const docLink = document.createElement('div');
+          docLink.innerHTML = docLinkHtml;
+          element.appendChild(docLink);
+        }
+      </script>
+    </div>
+  </div>
+</div></div>
+</div>
+<p>データセットの中には、陽性を全く検出できていないものがある。
+今回はyeast_ml8, abalone_19の2つのデータセットが、陽性を全く検出できていない。
+yeast_ml8, abalone_19はF1値、適合率、再現率が0である。</p>
+<p>一方、陽性と陰性の分類が完璧なデータセットがある。
+car_eval_4は陽性と陰性を全て正しく分類している。
+正解率、F1値、適合率、再現率のすべてが1.0である。</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./bibouroku\Imbalanced-learn"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="Imbalanced-learn-intro.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Imbalanced-learn</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../Book_Introducing_Python/Book_Introducing_Python.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">書籍：入門 Python 3 第2版</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By 柴田 侃汰(@shibata12k)<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
