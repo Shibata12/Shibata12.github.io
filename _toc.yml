@@ -5,6 +5,9 @@ parts:
     chapters:
     - file: bibouroku/how_to_update_jb
     - file: bibouroku/create_venv
+    - file: bibouroku/Imbalanced-learn/Imbalanced-learn-intro
+      sections:
+      - file: bibouroku/Imbalanced-learn/imbalanced_datasets_baseline
     - file: bibouroku/Book_Introducing_Python/Book_Introducing_Python
       sections:
       - file: bibouroku/Book_Introducing_Python/9章　関数/p181
