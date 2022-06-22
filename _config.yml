@@ -1,11 +1,18 @@
-title: "備忘録 雑記"
-author: "柴田 侃汰(@shibata12k)"
+# Book settings
+title                       : "備忘録 雑記"
+author                      : "柴田 侃汰 (Twitter: @shibata12k)"
+copyright                   : "2021-2022"
 
+# Execution settings
 execute:
-  execute_notebooks: off
+  execute_notebooks         : off
 
+# Parse and render settings
 parse:
   myst_enable_extensions:
-    # don't forget to list any other extensions you want enabled,
-    # including those that are enabled by default!
     - amsmath
+
+# Launch button settings
+launch_buttons:
+  notebook_interface        : jupyterlab
+  binderhub_url             : ""

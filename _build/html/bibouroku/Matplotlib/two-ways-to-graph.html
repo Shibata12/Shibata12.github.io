@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Imbalanced-learn &#8212; 備忘録 雑記</title>
+    <title>二通りのグラフ作成方法 &#8212; 備忘録 雑記</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet">
   <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -50,8 +50,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="不均衡データセットのベースラインモデル評価" href="imbalanced_datasets_baseline.html" />
-    <link rel="prev" title="二通りのグラフ作成方法" href="../Matplotlib/two-ways-to-graph.html" />
+    <link rel="next" title="Imbalanced-learn" href="../Imbalanced-learn/Imbalanced-learn-intro.html" />
+    <link rel="prev" title="Matplotlib" href="Matplotlib-intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -106,35 +106,35 @@ const thebe_selector_output = ".output, .cell_output"
    Anacondaで仮想環境を作成
   </a>
  </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../Matplotlib/Matplotlib-intro.html">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="Matplotlib-intro.html">
    Matplotlib
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
    <i class="fas fa-chevron-down">
    </i>
   </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../Matplotlib/two-ways-to-graph.html">
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      二通りのグラフ作成方法
     </a>
    </li>
   </ul>
  </li>
- <li class="toctree-l1 current active has-children">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Imbalanced-learn/Imbalanced-learn-intro.html">
    Imbalanced-learn
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="imbalanced_datasets_baseline.html">
+    <a class="reference internal" href="../Imbalanced-learn/imbalanced_datasets_baseline.html">
      不均衡データセットのベースラインモデル評価
     </a>
    </li>
@@ -225,9 +225,9 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/bibouroku/Imbalanced-learn/Imbalanced-learn-intro.md"><button type="button"
+        <a class="dropdown-buttons" href="../../_sources/bibouroku/Matplotlib/two-ways-to-graph.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
                 onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -250,6 +250,24 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matlabapi">
+   MATLAB形式のAPI
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#api">
+   オブジェクト指向API
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -257,23 +275,123 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Imbalanced-learn</h1>
+                <h1>二通りのグラフ作成方法</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matlabapi">
+   MATLAB形式のAPI
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#api">
+   オブジェクト指向API
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="imbalanced-learn">
-<h1>Imbalanced-learn<a class="headerlink" href="#imbalanced-learn" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="https://imbalanced-learn.org/stable/">Imbalanced-learn</a>の備忘録．</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="imbalanced_datasets_baseline.html">不均衡データセットのベースラインモデル評価</a></li>
+  <div class="tex2jax_ignore mathjax_ignore section" id="id1">
+<h1>二通りのグラフ作成方法<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p><strong>投稿日：2022年6月22日<br>最終更新日：2022年6月22日</strong></p>
+<p>matplotlibでグラフを作成するには，MATLAB形式のAPIとオブジェクト指向APIの二通りの方法がある．</p>
+<p><strong>実行環境</strong><br>
+このノートブックはjupyter lab上で実行している．pythonのバージョンは以下の通り．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>python --version
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Python 3.8.8
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>ライブラリ</strong><br>
+使用する各ライブラリのバージョンは以下の通り．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Matplotlib version </span><span class="si">{</span><span class="n">mpl</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Numpy version      </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">__version__</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Matplotlib version 3.3.4
+Numpy version      1.20.1
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="matlabapi">
+<h2>MATLAB形式のAPI<a class="headerlink" href="#matlabapi" title="Permalink to this headline">¶</a></h2>
+<p>MATLABでグラフを作成する時と同じようにmatplotlibを使用できる．以下のコードはグラフを縦に二つ並べるときの書き方である．これを実現するには<code class="docutils literal notranslate"><span class="pre">plt.subplot()</span></code>を使用する．</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/two-ways-to-graph_6_0.png" src="../../_images/two-ways-to-graph_6_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="api">
+<h2>オブジェクト指向API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
+<p>上記のグラフと同じものをオブジェクト指向APIで作成するには，<code class="docutils literal notranslate"><span class="pre">plt.subplots()</span></code>で生成される<code class="docutils literal notranslate"><span class="pre">Figure</span></code>オブジェクトと<code class="docutils literal notranslate"><span class="pre">Axes</span></code>オブジェクトを使用する．</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Matplotlibの公式ドキュメントによると（<a class="reference external" href="https://matplotlib.org/stable/tutorials/introductory/lifecycle.html#a-note-on-the-object-oriented-api-vs-pyplot">A note on the Object-Oriented API vs. Pyplot</a>），オブジェクト指向APIを使用することが推奨されている．</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/two-ways-to-graph_8_0.png" src="../../_images/two-ways-to-graph_8_0.png" />
+</div>
+</div>
+<p><strong>参考文献</strong><br></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.oreilly.co.jp/books/9784873118413/">Pythonデータサイエンスハンドブック Jake VanderPlas 著, 菊池 彰 訳, オライリー・ジャパン, ISBN978-4-87311-841-3</a></p></li>
 </ul>
 </div>
 </div>
@@ -291,7 +409,7 @@ const thebe_selector_output = ".output, .cell_output"
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./bibouroku\Imbalanced-learn"
+            path: "./bibouroku\Matplotlib"
         },
         predefinedOutput: true
     }
@@ -303,17 +421,17 @@ const thebe_selector_output = ".output, .cell_output"
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="../Matplotlib/two-ways-to-graph.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="Matplotlib-intro.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">二通りのグラフ作成方法</p>
+            <p class="prev-next-title">Matplotlib</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="imbalanced_datasets_baseline.html" title="next page">
+    <a class='right-next' id="next-link" href="../Imbalanced-learn/Imbalanced-learn-intro.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">不均衡データセットのベースラインモデル評価</p>
+        <p class="prev-next-title">Imbalanced-learn</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

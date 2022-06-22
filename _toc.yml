@@ -5,9 +5,9 @@ parts:
     chapters:
     - file: bibouroku/how_to_update_jb
     - file: bibouroku/create_venv
-#    - file: bibouroku/Matplotlib/Matplotlib-intro
-#      sections:
-#      - file: bibouroku/Matplotlib/********
+    - file: bibouroku/Matplotlib/Matplotlib-intro
+      sections:
+      - file: bibouroku/Matplotlib/two-ways-to-graph
     - file: bibouroku/Imbalanced-learn/Imbalanced-learn-intro
       sections:
       - file: bibouroku/Imbalanced-learn/imbalanced_datasets_baseline
