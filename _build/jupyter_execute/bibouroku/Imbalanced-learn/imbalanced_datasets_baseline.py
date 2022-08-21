@@ -166,7 +166,8 @@ print(f'モデル訓練時間の平均\n{dataset_scores["ecoli"]["fit_time"].mea
 
 scores_dict = {}
 for dataset_name in datasets:
-    scores_dict[dataset_name] =         ["{:.4f} ± {:.4f}".format(
+    scores_dict[dataset_name] = \
+        ["{:.4f} ± {:.4f}".format(
             dataset_scores[dataset_name]["test_"+score_name].mean(),
             dataset_scores[dataset_name]["test_"+score_name].std()
         ) for score_name in scoring]
