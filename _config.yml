@@ -12,6 +12,10 @@ parse:
   myst_enable_extensions:
     - amsmath
 
+# HTML-specific settings
+html:
+  google_analytics_id       : "G-KLZ68TSGC7"
+
 # Launch button settings
 launch_buttons:
   notebook_interface        : jupyterlab
