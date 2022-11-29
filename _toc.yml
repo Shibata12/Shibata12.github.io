@@ -1,6 +1,10 @@
 format: jb-book
 root: home
 parts:
+  - caption: 雑記
+    chapters:
+    - file: zakki/movies_watched
+    - file: zakki/report2021
   - caption: 備忘録
     chapters:
     - file: bibouroku/how_to_update_jb
@@ -16,7 +20,3 @@ parts:
       - file: bibouroku/Book_Introducing_Python/9章　関数/p181
       - file: bibouroku/Book_Introducing_Python/9章　関数/p183-187
       - file: bibouroku/Book_Introducing_Python/9章　関数/p205
-  - caption: 雑記
-    chapters:
-    - file: zakki/movies_watched
-    - file: zakki/report2021
