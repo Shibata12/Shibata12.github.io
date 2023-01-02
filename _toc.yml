@@ -9,6 +9,9 @@ parts:
     chapters:
     - file: bibouroku/how_to_update_jb
     - file: bibouroku/create_venv
+    - file: bibouroku/Bayes-stat/Bayes-stat-intro
+      sections:
+      - file: bibouroku/Bayes-stat/history
     - file: bibouroku/Matplotlib/Matplotlib-intro
       sections:
       - file: bibouroku/Matplotlib/two-ways-to-graph
