@@ -4,7 +4,9 @@ parts:
   - caption: 雑記
     chapters:
     - file: zakki/movies_watched
-    - file: zakki/report2021
+#    - file: zakki/year_review/intro
+#      sections:
+#      - file: zakki/year_review/report2021
   - caption: 備忘録
     chapters:
     - file: bibouroku/how_to_update_jb
