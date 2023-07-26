@@ -3,8 +3,8 @@
 
 **自己紹介**<br>
 柴田侃汰(しばたかんた)です。現在は、会社員です。
-SNSは[Twitter](https://twitter.com/shibata12k)
-をやっています。
+[Twitter](https://twitter.com/shibata12k) ([X](https://x.com))
+やっています。
 
 ```{tableofcontents}
 ```
