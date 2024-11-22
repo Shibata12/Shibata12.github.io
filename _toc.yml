@@ -1,9 +1,9 @@
 format: jb-book
 root: home
 parts:
-  #20240901 - caption: 雑記
-  #20240901   chapters:
-  #20240901   - file: zakki/movies_watched
+  - caption: 雑記                  #[2024/09/14削除]
+    chapters:                      #[2024/09/14削除]
+    - file: zakki/movies_watched   #[2024/09/14削除]
 #    - file: zakki/year_review/intro
 #      sections:
 #      - file: zakki/year_review/report2021
